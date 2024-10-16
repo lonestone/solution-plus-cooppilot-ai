@@ -1,0 +1,70 @@
+name: 'Build Docker Image for ECR'
+description: 'Build a Docker Image for ECR'
+
+inputs:
+  ecr_registry:
+    description: 'The ECR registry URL'
+    required: true
+  ecr_repository:
+    description: 'The ECR repository name'
+    required: true
+  build_dir:
+    description: 'The build directory'
+    required: true
+  dockerfile_dir:
+    description: 'The Dockerfile directory. Relative to build_dir.'
+    required: false
+    default: '.'
+  build_context:
+    description: 'The build context. Relative to build_dir. see: https://docs.docker.com/build/building/context/'
+    required: false
+    default: '.'
+  push_image:
+    description: 'Whether to push the image to ECR'
+    required: false
+    default: false   
+  build_args:
+    description: 'Build args'
+    required: false 
+    default: "['no_op=true']"
+
+outputs:
+  image:
+    description: 'ECR image'
+    value: ${{ steps.build-image.outputs.image }}
+
+runs:
+  using: 'composite'
+  steps:
+      - name: print input vars
+        run: |
+          echo "ECR_REGISTRY: ${{ inputs.ecr_registry }}"
+          echo "ECR_REPOSITORY: ${{ inputs.ecr_repository }}"
+          echo "BUILD_DIR: ${{ inputs.build_dir }}"
+          echo "DOCKERFILE_DIR: ${{ inputs.dockerfile_dir }}"
+          echo "BUILD_CONTEXT: ${{ inputs.build_context }}"
+          echo "PUSH_IMAGE: ${{ inputs.push_image }}"
+        shell: bash
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        shell: bash
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          BUILD_ARGS: ${{ join(fromJSON(inputs.build_args), ' --build-arg ') }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          ls -la
+          cd ${{ inputs.build_dir }}
+          docker build \
+            --build-arg $BUILD_ARGS \
+            -f ${{ inputs.dockerfile_dir }}/Dockerfile \
+            -t ${{ inputs.ecr_registry }}/${{ inputs.ecr_repository }}:$IMAGE_TAG \
+            -t ${{ inputs.ecr_registry }}/${{ inputs.ecr_repository }}:latest \
+            ${{ inputs.build_context }}
+          if [ "${{inputs.push_image}}" = "true" ]; then
+            docker push ${{ inputs.ecr_registry }}/${{ inputs.ecr_repository }} --all-tags
+          fi
+          echo "image=${{ inputs.ecr_registry }}/${{ inputs.ecr_repository }}:$IMAGE_TAG" >> $GITHUB_OUTPUT

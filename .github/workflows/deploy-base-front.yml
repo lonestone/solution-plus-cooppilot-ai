@@ -1,0 +1,59 @@
+name: Deploy Base Front
+
+on:
+  push:
+    branches:
+      - deploy/production
+    paths:
+      - "base/apps/front-end/**"
+      - "base/apps/common/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Base Front to Netlify
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./base/apps/front-end
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT_TOKEN_FOR_SUBMODULE }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.14.x"
+          cache: "pnpm"
+          cache-dependency-path: |
+            base/apps/front-end/pnpm-lock.yaml
+            base/apps/common/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build
+        env:
+          VITE_BACK_END_API_ENDPOINT: "https://api.admin-solution-plus.ai.lonestone.io"
+        run: pnpm run build
+
+      - name: Deploy
+        run: |
+          pnpm --package=netlify-cli dlx netlify deploy \
+          --dir ./dist \
+          -a ${{ secrets.NETLIFY_PAT }} \
+          -s 1e65a294-3abd-423c-8d12-3a92d057af64 \
+          --prod \
+          --message "Deploy from GitHub Actions [sha: ${{ github.sha }}]"

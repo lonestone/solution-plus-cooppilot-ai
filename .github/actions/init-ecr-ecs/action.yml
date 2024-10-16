@@ -1,0 +1,61 @@
+name: 'Deploy ECS Container'
+description: 'Deploy a container to ECS'
+
+inputs:
+  app_name:
+    description: 'The application name'
+    required: true
+  aws_region:
+    description: 'The AWS region'
+    required: true
+  aws_access_key_id:
+    description: 'The AWS access key ID'
+    required: true
+  aws_secret_access_key:
+    description: 'The AWS secret access key'
+    required: true
+
+outputs:
+  ecr_registry:
+    description: 'ECR registry URL'
+    value: ${{ steps.login-ecr.outputs.registry }}
+  ecr_repository:
+    description: 'ECR repository name'
+    value: ${{ steps.set-output-vars.outputs.ecr_repository }}
+  ecs_service:
+    description: 'ECS service name'
+    value: ${{ steps.set-output-vars.outputs.ecs_service }}
+  container_name:
+    description: 'Container name'
+    value: ${{ steps.set-output-vars.outputs.container_name }}
+    
+runs:
+  using: 'composite'
+  steps:
+
+      - name: print input vars
+        run: |
+          echo "APP_NAME: ${{ inputs.app_name }}"
+          echo "AWS_REGION: ${{ inputs.aws_region }}"
+          echo "AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}"
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ inputs.aws_access_key_id }} #$AWS_ACCESS_KEY_ID
+          aws-secret-access-key: ${{ inputs.aws_secret_access_key }}
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Set output variables
+        id: set-output-vars
+        run: |
+          echo "ecr_registry=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_OUTPUT
+          echo "ecr_repository=${{ inputs.app_name }}" >> $GITHUB_OUTPUT
+          echo "ecs_service=${{ inputs.app_name }}-service" >> $GITHUB_OUTPUT
+          echo "container_name=${{ inputs.app_name }}" >> $GITHUB_OUTPUT
+        shell: bash

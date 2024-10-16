@@ -1,0 +1,27 @@
+name: Deploy Base Back
+
+on:
+  push:
+    branches:
+      - deploy/production
+    paths:
+      - "base/apps/back-end/**"
+      - "base/apps/common/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Base Back to ECS
+    uses: ./.github/workflows/reusable-deploy-to-ecs.yml
+    with:
+      ecs_cluster: cooppilot-cluster
+      app_name: cooppilot-back-end
+      build_dir: ./base/apps/back-end
+      build_context: ./..
+      aws_region: eu-west-3
+      environment: production
+      review_mode: false
+    secrets: inherit

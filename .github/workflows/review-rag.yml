@@ -1,0 +1,28 @@
+name: Review RAG
+
+on:
+  push:
+    branches:
+      - review/production #this branch does not exist yet, it is an example of reusable workflow usage
+    paths:
+      - "apps/rag/**"
+      - "agentic-tools-plugins/**"
+      - ".github/workflows/review-rag.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    name: Build docker image but does not push it nor deploy ecs task
+    uses: ./.github/workflows/reusable-deploy-to-ecs.yml
+    with:
+      app_name: lonestone-ai-rag
+      build_dir: ./apps/rag # The Top level dir required by the Dockerfile (ie: where the Dockerfile can still access plugins and/or other external dependencies)
+      #dockerfile_dir: ./apps/rag # Both the location where rag Dockerfile and "src" folder are located. Important: it is relative to BUILD_DIR
+      build_context: ./../.. # The context for the docker build command, relative to the dockerfile_dir
+      aws_region: eu-west-3
+      environment: production
+      review_mode: true
+    secrets: inherit

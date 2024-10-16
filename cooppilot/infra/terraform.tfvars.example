@@ -1,0 +1,18 @@
+app_name            = "rag-lonestone"
+region              = "eu-west-3"
+account_id          = ""
+access_key          = ""
+secret_key          = ""
+certificate_arn     = ""
+db_instance_class   = "db.t4g.micro"
+db_name             = "vectordb"
+db_user             = ""
+db_pwd         	    = ""
+
+awsRuntimeAccessKeyId     = ""
+awsRuntimeSecretAccessKey = ""
+
+openai_api_key = ""
+harvest_access_token = ""
+forecast_account_id = ""
+forecast_api_url = ""

@@ -1,0 +1,30 @@
+name: Deploy Base RAG
+
+on:
+  push:
+    branches:
+      - deploy/production
+    paths:
+      - "base/apps/rag/**"
+      - "base/agentic-tools-plugins/**"
+      - "base/openapi-tools-plugins/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Base RAG to ECS
+    uses: ./.github/workflows/reusable-deploy-to-ecs.yml
+    with:
+      ecs_cluster: cooppilot-cluster
+      app_name: cooppilot-rag
+      build_dir: ./
+      dockerfile_dir: ./base/apps/rag
+      build_context: ./
+      aws_region: eu-west-3
+      environment: production
+      review_mode: false
+      build_args: '["PATH_PREFIX=./base"]'
+    secrets: inherit

@@ -1,0 +1,22 @@
+include:
+  - path:
+      - base/docker-compose.yml
+      - docker-compose.override.yml
+
+# services:
+#   demo-back:
+#     hostname: demo-back
+#     image: mcr.microsoft.com/devcontainers/typescript-node:dev-20
+#     ports:
+#       - 3002:3000
+#     volumes:
+#       - .:/workspace:cached
+#     command: /bin/sh -c "while sleep 1000; do :; done"
+#     depends_on:
+#       - back-end-db-dev
+
+#   demo-front-dev:
+#     image: mcr.microsoft.com/devcontainers/typescript-node:dev-20
+#     volumes:
+#       - .:/workspace:cached
+#     command: /bin/sh -c "while sleep 1000; do :; done"

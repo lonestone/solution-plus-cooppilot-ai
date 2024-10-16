@@ -1,0 +1,82 @@
+name: Deploy to Netlify
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      working_directory:
+        required: true
+        type: string
+      review_mode:
+        required: false
+        type: boolean
+        default: false
+      front_end_netlify_site_id:
+        required: true
+        type: string
+      back_end_api_endpoint:
+        required: false
+        type: string
+    secrets:
+      NETLIFY_PAT:
+        required: true
+jobs:
+  deploy_to_netlify:
+    name: Deploy to Netlify
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT_TOKEN_FOR_SUBMODULE }}
+
+      - name: debug inputs
+        run: |
+          echo "APP_NAME: ${{ inputs.app_name }}"
+          echo "WORKING_DIRECTORY: ${{ inputs.working_directory }}"
+          echo "REVIEW_MODE: ${{ inputs.review_mode }}"
+          echo "FRONT_END_NETLIFY_SITE_ID: ${{ vars.FRONT_END_NETLIFY_SITE_ID }}"
+          echo "inputs.back_end_api_endpoint: ${{ inputs.back_end_api_endpoint }}"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.14.x"
+          cache: "pnpm"
+          cache-dependency-path: ./apps/front-end/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build
+        env:
+          VITE_BACK_END_API_ENDPOINT: ${{ inputs.back_end_api_endpoint }}
+        run: pnpm run build
+  
+      # - name: Deploy
+      #   if: ${{ inputs.review_mode == false }}
+      #   run: |
+      #     pnpm --package=netlify-cli dlx netlify deploy \
+      #     --dir ./dist \
+      #     -a ${{ secrets.NETLIFY_PAT }} \
+      #     -s ${{ inputs.front_end_netlify_site_id }} \
+      #     --prod \
+      #     --message "Deploy from GitHub Actions [sha: ${{ github.sha }}]"

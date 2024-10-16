@@ -1,0 +1,51 @@
+name: 'Deploy ECS Task Definition'
+description: 'Deploy a container to ECS'
+
+inputs:
+  app_name:
+    description: 'The application name'
+    required: true
+  container_name:
+    description: 'The container name'
+    required: true
+  ecs_service:
+    description: 'The ECS service name'
+    required: true
+  ecs_cluster:
+    description: 'The ECS cluster name'
+    required: true
+  image:
+    description: 'The image to deploy'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Pull Task Definition
+      shell: bash
+      run: |
+        aws ecs describe-task-definition --task-definition ${{ inputs.app_name }} --query taskDefinition > ./task-definition.json
+
+    - name: debug inputs
+      run: |
+        echo "APP_NAME: ${{ inputs.app_name }}"
+        echo "CONTAINER_NAME: ${{ inputs.container_name }}"
+        echo "ECS_SERVICE: ${{ inputs.ecs_service }}"
+        echo "ECS_CLUSTER: ${{ inputs.ecs_cluster }}"
+        echo "IMAGE: ${{ inputs.image }}"
+      shell: bash
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ./task-definition.json
+        container-name: ${{ inputs.container_name }}
+        image: ${{ inputs.image }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        cluster: ${{ inputs.ecs_cluster }}
+        service: ${{ inputs.ecs_service }}
