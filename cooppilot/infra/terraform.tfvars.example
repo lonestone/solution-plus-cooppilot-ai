@@ -9,9 +9,6 @@ db_name             = "vectordb"
 db_user             = ""
 db_pwd         	    = ""
 
-awsRuntimeAccessKeyId     = ""
-awsRuntimeSecretAccessKey = ""
-
 openai_api_key = ""
 harvest_access_token = ""
 forecast_account_id = ""

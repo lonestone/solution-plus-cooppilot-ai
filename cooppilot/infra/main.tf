@@ -41,9 +41,6 @@ module "base" {
 
   openai_api_key = var.openai_api_key
 
-  awsRuntimeAccessKeyId     = var.awsRuntimeAccessKeyId
-  awsRuntimeSecretAccessKey = var.awsRuntimeSecretAccessKey
-
   harvest_access_token = var.harvest_access_token
   forecast_account_id  = var.forecast_account_id
   forecast_api_url     = var.forecast_api_url
