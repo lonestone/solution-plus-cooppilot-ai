@@ -54,6 +54,6 @@ jobs:
           pnpm --package=netlify-cli dlx netlify deploy \
           --dir ./dist \
           -a ${{ secrets.NETLIFY_PAT }} \
-          -s 1e65a294-3abd-423c-8d12-3a92d057af64 \
+          -s ${{ vars.NETLIFY_SITE_ID }} \
           --prod \
           --message "Deploy from GitHub Actions [sha: ${{ github.sha }}]"
