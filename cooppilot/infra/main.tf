@@ -39,6 +39,9 @@ module "base" {
   db_pwd            = var.db_pwd
   db_name           = var.db_name
 
+  awsRuntimeAccessKeyId     = var.awsRuntimeAccessKeyId
+  awsRuntimeSecretAccessKey = var.awsRuntimeSecretAccessKey
+
   openai_api_key = var.openai_api_key
 
   harvest_access_token = var.harvest_access_token
