@@ -47,6 +47,15 @@ variable "db_pwd" {
   sensitive = true
 }
 
+variable "awsRuntimeAccessKeyId" {
+  type      = string
+  sensitive = true
+}
+variable "awsRuntimeSecretAccessKey" {
+  type      = string
+  sensitive = true
+}
+
 variable "openai_api_key" {
   type      = string
   sensitive = true
