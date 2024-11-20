@@ -74,3 +74,15 @@ variable "forecast_account_id" {
 variable "forecast_api_url" {
   type = string
 }
+
+# CoopPilot
+
+variable "cooppilot_db_name" {
+  type = string
+}
+variable "cooppilot_organization_id" {
+  type = string
+}
+variable "cooppilot_project_id" {
+  type = string
+}

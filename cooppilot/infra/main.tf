@@ -48,5 +48,24 @@ module "base" {
   forecast_account_id  = var.forecast_account_id
   forecast_api_url     = var.forecast_api_url
 
-  additional_services = {}
+  additional_services = {
+    cooppilot-ai-back = {
+      assign_public_ip = true // NOTE mandatory for now: without this, the service will not be able to pull the image from ECR
+      lb_target_group = {
+        host_header       = "api.splus-cooppilot.ai.lonestone.studio",
+        health_check_path = "/" // TODO "/health-check"
+      }
+      container_port = 3000,
+      cpu            = 512,  // TODO test with 512
+      memory         = 1024, // TODO test with 1024
+      env_vars = {
+        NO_COLOR               = "1" # To disable color in the NestJS default logger's messages
+        DATABASE_URL           = "postgresql://${var.db_user}:${var.db_pwd}@${module.base.rds_back_end_endpoint}/${var.cooppilot_db_name}?schema=public"
+        ADMIN_BACKEND_ENDPOINT = "http://back-end.${var.app_name}.internal:3000"
+        ORGANIZATION_ID        = var.cooppilot_organization_id
+        // TODO update to a list
+        PROJECT_ID = var.cooppilot_project_id
+      },
+    },
+  }
 }
