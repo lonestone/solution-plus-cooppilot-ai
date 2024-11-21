@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.svg";
+import logo from "@/assets/logo.png";
 import TopBarNavCategory from "@/components/molecules/TopbarNavCategory";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
@@ -21,10 +21,9 @@ const TopBar = () => {
   }, []);
 
   return (
-    <div className="px-4 py-2 flex flex-row justify-between items-center shadow-lg z-10 shadow-black">
-      <div className="flex flex-row items-center justify-center pt-2">
-        <img src={logo} alt="Logo" />
-        <span className="text-white text-xl ml-2">CoopGPT</span>
+    <div className="px-4 py-2 flex flex-row justify-between items-center z-10 border-white border h-20 bg-gradient-to-r from-[#efefef99] to-[#efefef33]">
+      <div className="flex flex-row items-center justify-center">
+        <img src={logo} alt="Logo" width={50} />
       </div>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild>

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import useSWR from "swr";
 
 export const useLastChatCleanup = (shouldFetch = true) => {
-  const { userId: token } = useContext(AuthContext);
+  const { token: token } = useContext(AuthContext);
 
   return useSWR(
     shouldFetch && {

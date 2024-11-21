@@ -2,8 +2,7 @@ import ChatAnswer from "@/components/molecules/ChatAnswer";
 import ChatQuestion from "@/components/molecules/ChatQuestion";
 import { useLastChatCleanup } from "@/hooks/useLastChatCleanup";
 import useScrollable, { ScrollPosition } from "@/hooks/useScrollable";
-import { ChatEntryExamples, Entry } from "@/pages/Chat";
-import { ChatEntry } from "@common/types/back/chat";
+import { Entry } from "@/pages/Chat";
 import {
   forwardRef,
   Ref,
@@ -13,30 +12,19 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useTranslation } from "react-i18next";
-import ChatEntryExamplesList from "./ChatEntryExamplesList";
 
 type ChatEntriesProps = {
   chatEntries: Entry[];
-  onExampleClick: (example: string) => void;
 };
 
 export type ChatEntriesRef = {
   scrollToBottom: (behavior?: "smooth" | "instant") => void;
 };
 
-const isChatEntry = (chatEntry: Entry): chatEntry is ChatEntry => {
-  return (chatEntry as ChatEntryExamples).examples == null;
-};
-
 const ChatEntries = forwardRef<ChatEntriesRef, ChatEntriesProps>(
-  (
-    { chatEntries, onExampleClick }: ChatEntriesProps,
-    ref: Ref<ChatEntriesRef>
-  ) => {
+  ({ chatEntries }: ChatEntriesProps, ref: Ref<ChatEntriesRef>) => {
     const { scrollToBottom, scrollPositionRef, scrollableElemRef } =
       useScrollable();
-    const { t } = useTranslation();
     const { data: lastChatCleanup } = useLastChatCleanup();
     const [hasLoaded, setHasLoaded] = useState(false);
     const [nbLoaded, setNbLoaded] = useState(0);
@@ -92,52 +80,34 @@ const ChatEntries = forwardRef<ChatEntriesRef, ChatEntriesProps>(
         ref={scrollableElemRef}
       >
         {Array.isArray(entriesAfterCleanup) &&
-          entriesAfterCleanup.map(
-            (entry) =>
-              isChatEntry(entry) && (
-                <div
-                  key={entry.id}
-                  className="flex flex-col gap-4 opacity-40 pointer-events-none"
-                >
-                  <ChatQuestion question={entry.query} />
-                  <ChatAnswer
-                    onLoaded={handleEntryLoaded}
-                    isActive={false}
-                    chatEntryId={entry.id}
-                    onChatEntryUpdated={requestScrollToBottom}
-                  />
-                </div>
-              )
-          )}
-        {lastChatCleanup?.lastCleanup && (
-          <div className="w-full flex flex-row items-center gap-2">
-            <div className="h-[1px] w-full bg-muted-foreground/50" />
-            <span className="text-muted-foreground text-sm whitespace-nowrap font-extralight">
-              {t("Chat.newConversation")}
-            </span>
-            <div className="h-[1px] w-full bg-muted-foreground/50" />
-          </div>
-        )}
+          entriesAfterCleanup.map((entry) => (
+            <div
+              key={entry.id}
+              className="flex flex-col gap-4 opacity-40 pointer-events-none"
+            >
+              <ChatQuestion question={entry.query} />
+              <ChatAnswer
+                onLoaded={handleEntryLoaded}
+                isActive={false}
+                projectId={entry.projectId}
+                chatEntryId={entry.id}
+                onChatEntryUpdated={requestScrollToBottom}
+              />
+            </div>
+          ))}
         {Array.isArray(entriesBeforeCleanup) &&
-          entriesBeforeCleanup.map(
-            (entry) =>
-              isChatEntry(entry) && (
-                <div key={entry.id} className="flex flex-col gap-4">
-                  <ChatQuestion question={entry.query} />
-                  <ChatAnswer
-                    onLoaded={handleEntryLoaded}
-                    isActive
-                    chatEntryId={entry.id}
-                    onChatEntryUpdated={requestScrollToBottom}
-                  />
-                </div>
-              )
-          )}
-        <ChatEntryExamplesList
-          entries={chatEntries}
-          onExampleClick={onExampleClick}
-          onLoaded={handleEntryLoaded}
-        />
+          entriesBeforeCleanup.map((entry) => (
+            <div key={entry.id} className="flex flex-col gap-4">
+              <ChatQuestion question={entry.query} />
+              <ChatAnswer
+                onLoaded={handleEntryLoaded}
+                isActive
+                projectId={entry.projectId}
+                chatEntryId={entry.id}
+                onChatEntryUpdated={requestScrollToBottom}
+              />
+            </div>
+          ))}
       </div>
     );
   }

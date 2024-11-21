@@ -1,16 +1,12 @@
 import ContentSection from "@/components/layouts/ContentSection";
 import HelpCard from "@/components/molecules/HelpCard";
-import UsageExamples from "@/components/molecules/UsageExamples";
-import { useChatExamples } from "@/hooks/useChatExamples";
 import { useHelpSections } from "@/hooks/useHelpSections";
 import { useMostVisibleElement } from "@/hooks/useMostVisibleElement";
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 export const Help = () => {
   const { t } = useTranslation();
-  const questions = useChatExamples();
   const { usecases, features, privacy, experimentalMode } = useHelpSections();
   const useCasesRef = useRef<HTMLDivElement>(null);
   const questionsRef = useRef<HTMLDivElement>(null);
@@ -24,14 +20,6 @@ export const Help = () => {
     privacyRef,
     experimentalModeRef,
   ]);
-  const navigate = useNavigate();
-
-  const goToNewChat = useCallback(
-    (message: string) => {
-      navigate("/chat?newQuery=" + message);
-    },
-    [navigate]
-  );
 
   return (
     <div className="flex w-full h-full justify-center">
@@ -73,24 +61,6 @@ export const Help = () => {
                     key={features.title + index}
                     title={feature.title}
                     desc={feature.desc}
-                  />
-                ))}
-              </div>
-            </ContentSection>
-            <ContentSection
-              title={t("Help.Questions.title")}
-              desc={t("Help.Questions.desc")}
-              size="3xl"
-              ref={questionsRef}
-            >
-              <div className="flex flex-col gap-4">
-                {questions.map((question) => (
-                  <UsageExamples
-                    key={question.title}
-                    icon={question.icon}
-                    title={question.title}
-                    onExampleClick={goToNewChat}
-                    examples={question.examples}
                   />
                 ))}
               </div>
@@ -150,18 +120,6 @@ export const Help = () => {
               }
             >
               {t("Help.Features.title")}
-            </div>
-            <div
-              className={
-                mostVisibleElementRef === questionsRef.current
-                  ? "text-white"
-                  : "text-gray-500"
-              }
-              onClick={() =>
-                questionsRef.current?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              {t("Help.Questions.title")}
             </div>
             <div
               className={

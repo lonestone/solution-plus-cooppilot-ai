@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       const user: User = {
         id: token,
         email: `${token}@coop.gpt`,
-        name: `CoopGPT ${token}`,
+        name: `CoopIA ${token}`,
         country: '',
         company: '',
       };

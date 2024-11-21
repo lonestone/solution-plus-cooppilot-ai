@@ -17,7 +17,7 @@ const Sidebar = () => {
       <div className="rounded-2xl bg-card flex flex-col p-4 gap-8 w-full">
         <div className="flex flex-row w-full items-center justify-center pt-2">
           <img src={logo} alt="Logo" />
-          <span className="text-white text-2xl ml-3">CoopGPT</span>
+          <span className="text-white text-2xl ml-3">CoopIA</span>
         </div>
         <Link
           to="/chat"

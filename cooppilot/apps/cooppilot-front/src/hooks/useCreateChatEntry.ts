@@ -30,7 +30,7 @@ const fetcher =
   };
 
 export const useCreateChatEntry = () => {
-  const { userId: token } = useContext(AuthContext);
+  const { token: token } = useContext(AuthContext);
 
   return useSWRMutation({ key: URL }, fetcher(token));
 };

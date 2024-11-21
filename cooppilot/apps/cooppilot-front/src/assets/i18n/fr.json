@@ -1,10 +1,58 @@
 {
   "Sidebar": {
-    "talkWith": "Discuter avec CoopPilot",
+    "talkWith": "Discuter avec CoopIA",
     "Categories": {
       "more": "Plus d'informations",
       "whatsNew": "Quoi de neuf ?",
       "help": "Aide"
+    }
+  },
+  "Welcome": {
+    "title": "Bonjour",
+    "subTitle": "De quoi avez-vous besoin aujourd'hui ?",
+    "selectAgent": "Sélectionnez un domaine métier",
+    "selectQuestion": "Sélectionnez une question",
+    "agents": {
+      "agent-formation": {
+        "description": "Générer un quizz et me challenger",
+        "questions": [
+          "Comment générer un quizz personnalisé pour un agent ?",
+          "Comment créer un quizz personnalisé pour un agent ?",
+          "Comment créer un quizz personnalisé pour un agent ?",
+          "Quels sont les outils que je peux utiliser pour créer un quizz personnalisé ?",
+          "Comment créer un quizz personnalisé pour un agent ?"
+        ]
+      },
+      "next-2": {
+        "description": "Trouver des conseils personnalisés",
+        "questions": [
+          "TODO",
+          "TODO",
+          "TODO",
+          "TODO"
+        ]
+      },
+      "next-3": {
+        "description": "Maximiser mon temps dans ma journée",
+        "questions": [
+          "TODO",
+          "TODO",
+          "TODO"
+        ]
+      },
+      "next-4": {
+        "description": "Me former avec une thématique précise",
+        "questions": [
+          "TODO",
+          "TODO"
+        ]
+      },
+      "next-5": {
+        "description": "Générer un rapport avec des données détaillées",
+        "questions": [
+          "TODO"
+        ]
+      }
     }
   },
   "NewChatHeader": {
@@ -12,11 +60,11 @@
     "subtitle": "Demandez-moi tout ce que vous voulez !",
     "Fragments": {
       "FirstSteps": {
-        "title": "Premiers pas avec CoopPilot",
+        "title": "Premiers pas avec CoopIA",
         "Steps": {
-          "1": "Découvrez comment CoopPilot fonctionne et comment les questions sont générées.",
+          "1": "Découvrez comment CoopIA fonctionne et comment les questions sont générées.",
           "2": "En savoir plus sur les documents de la base de données.",
-          "3": "Posez une question à CoopPilot et obtenez une réponse."
+          "3": "Posez une question à CoopIA et obtenez une réponse."
         }
       },
       "Questions": {
@@ -75,7 +123,6 @@
     "inspireMe": "Inspire moi",
     "conversationClearSuccess": "Historique de la conversation effacé",
     "conversationClearError": "Quelque chose s'est mal passé",
-    "newConversation": "Nouvelle conversation",
     "tools": "Outils",
     "sources": "Sources",
     "details": "Détails",
@@ -129,52 +176,52 @@
   },
   "Help": {
     "title": "Aide",
-    "desc": "Retrouvez toutes les informations nécessaires à l'utilisation de CoopPilot",
+    "desc": "Retrouvez toutes les informations nécessaires à l'utilisation de CoopIA",
     "Questions": {
       "title": "Exemples de questions",
-      "desc": "Découvrez le type de questions que vous pouvez poser à CoopPilot."
+      "desc": "Découvrez le type de questions que vous pouvez poser à CoopIA."
     },
     "Usecases": {
       "title": "Cas d'utilisation",
-      "desc": "Découvrez comment CoopPilot peut vous aider",
+      "desc": "Découvrez comment CoopIA peut vous aider",
       "Examples": {
         "1": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "2": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "3": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "4": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         }
       }
     },
     "Features": {
       "title": "Fonctionnalités",
-      "desc": "Découvrez ce que vous pouvez faire avec CoopPilot",
+      "desc": "Découvrez ce que vous pouvez faire avec CoopIA",
       "Examples": {
         "1": {
           "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "2": {
           "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "3": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "4": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et des informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et des informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         }
       }
     },
@@ -184,19 +231,19 @@
       "Examples": {
         "1": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand elle peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser."
         },
         "2": {
           "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "3": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "4": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand elle peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser."
         }
       }
     },
@@ -206,26 +253,26 @@
       "Examples": {
         "1": {
           "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "2": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "3": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         },
         "4": {
           "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopPilot peut faire et quand il peut l'utiliser."
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
         }
       }
     }
   },
   "News": {
     "title": "Quoi de neuf ?",
-    "desc": "Dernières mises à jour de CoopPilot",
+    "desc": "Dernières mises à jour de CoopIA",
     "released": "Publié le {{date}}"
   }
 }

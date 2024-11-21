@@ -8,13 +8,13 @@ export const AuthContext = createContext<AuthContextData>({
   isLoading: false,
   error: undefined,
   user: undefined,
-  userId: "",
+  token: undefined,
 });
 
 type AuthContextData = {
   isLoading: boolean;
   error: string | undefined;
-  userId: string;
+  token: string | undefined;
   user:
     | {
         id: string;
@@ -73,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         error,
         user,
-        userId,
+        token: userId,
       }}
     >
       {children}

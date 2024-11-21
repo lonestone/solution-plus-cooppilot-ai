@@ -4,27 +4,31 @@ import { chatEntrySchema } from "@common/types/back/chat";
 import { useContext } from "react";
 import { z } from "zod";
 
-const URL = `${import.meta.env.VITE_BACK_END_API_ENDPOINT}/ai/chat`;
-
-const fetcher = (token: string) => async () => {
-  const res = await fetch(URL, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+const fetcher = async ({ url, token }: { url: string; token: string }) => {
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   return z.array(chatEntrySchema).parse(await res.json());
 };
 
-export const useChatEntries = (shouldFetch = true) => {
-  const { userId: token } = useContext(AuthContext);
+export const useChatEntries = ({
+  projectSlug,
+}: {
+  projectSlug: string | undefined;
+}) => {
+  const { token } = useContext(AuthContext);
 
   return chatEntriesHook({
-    key: shouldFetch
-      ? {
-          url: URL,
-        }
-      : null,
-    fetcher: fetcher(token),
+    key:
+      projectSlug && token != null
+        ? {
+            url: `${
+              import.meta.env.VITE_BACK_END_API_ENDPOINT
+            }/ai/chat/_/${projectSlug}`,
+            token,
+          }
+        : null,
+    fetcher,
   });
 };

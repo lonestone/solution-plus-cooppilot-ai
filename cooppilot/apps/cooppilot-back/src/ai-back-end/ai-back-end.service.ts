@@ -14,21 +14,22 @@ export class AiBackEndService {
   private readonly logger = new Logger(AiBackEndService.name);
 
   private orgId: string;
-  private projId: string;
+  // private projId: string;
 
   constructor(
     private readonly prisma: PrismaService,
     readonly configService: ConfigService,
   ) {
     this.orgId = configService.getOrThrow('ORGANIZATION_ID');
-    this.projId = configService.getOrThrow('PROJECT_ID');
+    // this.projId = configService.getOrThrow('PROJECT_ID');
 
-    this.logger.log(`Using orgId: "${this.orgId}", projId: "${this.projId}"`);
+    this.logger.log(`Using orgId: "${this.orgId}"`);
   }
 
   async getLastChatCleanup(
     userId: string,
   ): Promise<UserChatHistoryCleanup | null> {
+    this.logger.log(`Getting last chat cleanup for userId: ${userId}`);
     const latestHistoryCleanup =
       await this.prisma.userChatHistoryCleanup.findFirst({
         where: { userId },
@@ -59,24 +60,35 @@ export class AiBackEndService {
     }
   }
 
-  async getChatEntries(user: User): Promise<ChatEntry[]> {
+  async getChatEntries(projectId: string, user: User): Promise<ChatEntry[]> {
     return chatEntriesFetcher({
       orgId: this.orgId,
-      projId: this.projId,
+      projId: projectId,
       authHeaders: getAuthFromUser(user),
     });
   }
 
-  async getChatEntry(entryId: number, user: User): Promise<ChatEntry> {
+  async getChatEntry(
+    projectId: string,
+    entryId: number,
+    user: User,
+  ): Promise<ChatEntry> {
+    this.logger.log(
+      `Getting chat entry for projectId: ${projectId}, entryId: ${entryId}`,
+    );
     return chatEntryFetcher({
       orgId: this.orgId,
-      projId: this.projId,
+      projId: projectId,
       chatEntryId: entryId,
       authHeaders: getAuthFromUser(user),
     });
   }
 
-  async createChatEntry(message: string, user: User): Promise<ChatEntry> {
+  async createChatEntry(
+    projectId: string,
+    message: string,
+    user: User,
+  ): Promise<ChatEntry> {
     const latestHistoryCleanup =
       await this.prisma.userChatHistoryCleanup.findFirst({
         where: { userId: user.id },
@@ -84,7 +96,7 @@ export class AiBackEndService {
 
     const res = await createChatEntry({
       orgId: this.orgId,
-      projId: this.projId,
+      projId: projectId,
       history_starting_at: latestHistoryCleanup?.lastCleanup,
       message,
       authHeaders: getAuthFromUser(user),
@@ -94,13 +106,14 @@ export class AiBackEndService {
   }
 
   async createOrUpdateFeedbackOnChatEntry(
+    projectId: string,
     chatEntryId: number,
     feedback: ChatEntryFeedback,
     user: User,
   ): Promise<number> {
     const res = await createOrUpdateChatEntryFeedback({
       orgId: this.orgId,
-      projId: this.projId,
+      projId: projectId,
       chatEntryId,
       feedback,
       authHeaders: getAuthFromUser(user),

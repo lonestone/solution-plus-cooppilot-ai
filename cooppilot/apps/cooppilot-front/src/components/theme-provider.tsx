@@ -67,14 +67,7 @@ export function ThemeProvider({
   };
 
   return (
-    <ThemeProviderContext.Provider
-      {...props}
-      value={{
-        theme: "dark",
-        setTheme: () => null,
-        resolvedTheme: "dark",
-      }}
-    >
+    <ThemeProviderContext.Provider {...props} value={value}>
       {children}
     </ThemeProviderContext.Provider>
   );

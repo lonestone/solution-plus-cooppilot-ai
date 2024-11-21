@@ -1,22 +1,27 @@
 {
   "Sidebar": {
-    "talkWith": "Talk with CoopGPT",
+    "talkWith": "Talk with CoopIA",
     "Categories": {
       "more": "More",
       "whatsNew": "What's new ?",
       "help": "Help"
     }
   },
+  "Welcome": {
+    "title": "Hi",
+    "subTitle": "What do you want to do?",
+    "selectAgent": "Select a field"
+  },
   "NewChatHeader": {
     "title": "Hello {{name}}",
     "subtitle": "Ask me anything!",
     "Fragments": {
       "FirstSteps": {
-        "title": "First steps with CoopGPT",
+        "title": "First steps with CoopIA",
         "Steps": {
-          "1": "Find out how CoopGPT works and how questions are generated.",
+          "1": "Find out how CoopIA works and how questions are generated.",
           "2": "Find out more about the documents in the database.",
-          "3": "Ask CoopGPT a question and get a response."
+          "3": "Ask CoopIA a question and get a response."
         }
       },
       "Questions": {
@@ -75,7 +80,6 @@
     "inspireMe": "Inspire me",
     "conversationClearSuccess": "Conversation history cleared",
     "conversationClearError": "Something went wrong",
-    "newConversation": "New conversation",
     "tools": "Tools",
     "sources": "Sources",
     "details": "Details",
@@ -129,52 +133,52 @@
   },
   "Help": {
     "title": "Help",
-    "desc": "Find all the information you need to use CoopGPT",
+    "desc": "Find all the information you need to use CoopIA",
     "Questions": {
       "title": "Question exemples",
-      "desc": "Discover what kind of questions you can ask CoopGPT"
+      "desc": "Discover what kind of questions you can ask CoopIA"
     },
     "Usecases": {
       "title": "Usecases",
-      "desc": "Discover how CoopGPT can help you",
+      "desc": "Discover how CoopIA can help you",
       "Examples": {
         "1": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "2": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "3": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "4": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         }
       }
     },
     "Features": {
       "title": "Features",
-      "desc": "Discover what you can do with CoopGPT",
+      "desc": "Discover what you can do with CoopIA",
       "Examples": {
         "1": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "2": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "3": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "4": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         }
       }
     },
@@ -184,19 +188,19 @@
       "Examples": {
         "1": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "2": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "3": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "4": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         }
       }
     },
@@ -206,26 +210,26 @@
       "Examples": {
         "1": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "2": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "3": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         },
         "4": {
           "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopGPT can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
         }
       }
     }
   },
   "News": {
     "title": "What's new?",
-    "desc": "Latest CoopGPT updates",
+    "desc": "Latest CoopIA updates",
     "released": "Released on {{date}}"
   }
 }

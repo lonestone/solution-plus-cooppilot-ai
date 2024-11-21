@@ -1,7 +1,6 @@
 import ChatEntryFeedback from "@/components/molecules/ChatEntryFeedback";
 import ChatReasoningLoader from "@/components/molecules/ChatReasoningLoader";
 import ChatAnswerDetails from "@/components/organisms/ChatAnswerDetails";
-import { ChatEntrySkeleton } from "@/components/organisms/ChatSkeleton";
 import { useChatEntryPolling } from "@/hooks/useChatEntry";
 import { ChatEntry } from "@common/types/back/chat";
 import { User } from "lucide-react";
@@ -11,6 +10,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 type ChatAnswerProps = {
+  projectId: string;
   chatEntryId: number;
   onChatEntryUpdated: () => void;
   onLoaded: () => void;
@@ -18,6 +18,7 @@ type ChatAnswerProps = {
 };
 
 const ChatAnswer = ({
+  projectId,
   chatEntryId,
   onChatEntryUpdated,
   onLoaded,
@@ -26,6 +27,7 @@ const ChatAnswer = ({
   const { chatEntry } = useChatEntryPolling({
     active: true,
     cachedChatEntry: {} as ChatEntry,
+    projectId,
     chatId: chatEntryId,
   });
   const { t } = useTranslation();
@@ -58,18 +60,19 @@ const ChatAnswer = ({
     ) {
       return <ChatReasoningLoader entry={chatEntry} />;
     } else {
-      return <ChatEntrySkeleton isLeft={false} displayUser={false} />;
+      // return <ChatEntrySkeleton isLeft={false} displayUser={false} />;
+      return null;
     }
   }, [chatEntry, t]);
 
   return (
     <div className="flex flex-col gap-2 items-start" id="list-view-item">
       <div className="flex flex-row items-start gap-4 w-full">
-        <div className="rounded-full bg-gradient-to-r from-gradient-from to-gradient-to p-2 text-xs text-stone-50">
+        <div className="rounded-full bg-primary p-2 text-xs text-white">
           <User />
         </div>
         <div
-          className="markdown-content w-full md:max-w-[calc(100%-120px)] overflow-hidden"
+          className="w-full md:max-w-[calc(100%-120px)] markdown-content overflow-hidden"
           style={{ wordBreak: "break-word" }}
         >
           {Comp}

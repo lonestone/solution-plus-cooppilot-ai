@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "@/auth/AuthProvider";
 
 const useTranscript = () => {
-  const { userId: token } = useContext(AuthContext);
+  const { token: token } = useContext(AuthContext);
 
   const [isTranscribing, setIsTranscribing] = useState<boolean>(false);
 

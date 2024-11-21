@@ -37,7 +37,7 @@ const fetcher =
   };
 
 export const useChatEntryFeedbackMutation = (chatEntryId: number) => {
-  const { userId: token } = useContext(AuthContext);
+  const { token: token } = useContext(AuthContext);
 
   return useSWRMutation(
     {

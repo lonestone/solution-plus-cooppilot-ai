@@ -4,7 +4,7 @@ import { useContext } from "react";
 import useSWRMutation from "swr/mutation";
 
 export const useLastChatCleanupMutation = () => {
-  const { userId: token } = useContext(AuthContext);
+  const { token: token } = useContext(AuthContext);
   const { mutate } = useLastChatCleanup(false);
 
   return useSWRMutation(

@@ -1,4 +1,3 @@
-import WhisperRecorder from "@/components/atoms/WhisperRecorder";
 import ChatInput from "@/components/molecules/ChatInput";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
@@ -48,15 +47,14 @@ const ChatPromptInput = ({ sendMessage }: ChatPromptInputProps) => {
         value={message}
         onChange={handleChange}
         onKeyDown={onKeyDown}
-        className="w-full border-none focus-visible:ring-3 resize-none min-h-[2.5rem] h-[2.5rem] bg-transparent"
+        className="w-full border-none focus-visible:ring-3 resize-none min-h-[2.5rem] h-[2.5rem] bg-[#f7f5f5]"
       />
-      <WhisperRecorder onTranscriptionReady={onTranscriptionReady} />
+      {/* <WhisperRecorder onTranscriptionReady={onTranscriptionReady} /> */}
       <Button
         size="icon"
         className="rounded-full h-10 w-10 text-white p-2 ml-2"
         disabled={message.trim() === ""}
         onClick={onSubmit}
-        variant="gradient"
       >
         {/* C'était pas aligné donc bon..... a méditer */}
         <Send className="translate-y-[1px] translate-x-[-1px]" />

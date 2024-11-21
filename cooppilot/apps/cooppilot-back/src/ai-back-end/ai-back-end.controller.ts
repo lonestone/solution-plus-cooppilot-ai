@@ -18,32 +18,53 @@ import { AiBackEndService } from './ai-back-end.service';
 export class AiBackEndController {
   constructor(private readonly aiBackEndService: AiBackEndService) {}
 
-  @Get('chat')
-  async getChatEntries(@CurrentUser() user: User | null) {
+  @Get('chat/_/:projectSlug')
+  async getChatEntries(
+    @Param('projectSlug') projectSlug: string,
+    @CurrentUser() user: User | null,
+  ) {
     if (user == null) throw new UnauthorizedException('no user');
-    return this.aiBackEndService.getChatEntries(user);
+    const entries = await this.aiBackEndService.getChatEntries(
+      projectSlug,
+      user,
+    );
+
+    const cleanUp = await this.getLastChatCleanup(user);
+
+    if (cleanUp.lastCleanup == null) return entries;
+
+    return entries.filter(
+      (entry) => entry.createdAt.getTime() > cleanUp.lastCleanup.getTime(),
+    );
   }
 
-  @Get('chat/:entryId')
+  @Get('chat/_/:projectSlug/:entryId')
   async getChatEntry(
+    @Param('projectSlug') projectSlug: string,
     @Param('entryId') entryId: number,
     @CurrentUser() user: User | null,
   ) {
     if (user == null) throw new UnauthorizedException('no user');
-    return this.aiBackEndService.getChatEntry(entryId, user);
+    return this.aiBackEndService.getChatEntry(projectSlug, entryId, user);
   }
 
-  @Post('chat/create')
+  @Post('chat/_/:projectSlug/create')
   async createChatEntry(
+    @Param('projectSlug') projectSlug: string,
     @Body() body: { message: string },
     @CurrentUser() user: User | null,
   ) {
     if (user == null) throw new UnauthorizedException('no user');
-    return this.aiBackEndService.createChatEntry(body.message, user);
+    return this.aiBackEndService.createChatEntry(
+      projectSlug,
+      body.message,
+      user,
+    );
   }
 
-  @Post('chat/:chatEntryId/feedback')
+  @Post('chat/_/:projectSlug/:chatEntryId/feedback')
   async createOrUpdateFeedbackOnChatEntry(
+    @Param('projectSlug') projectSlug: string,
     @Param('chatEntryId') chatEntryId: number,
     @Body() body: unknown,
     @Res() res: Response,
@@ -55,6 +76,7 @@ export class AiBackEndController {
 
     const status =
       await this.aiBackEndService.createOrUpdateFeedbackOnChatEntry(
+        projectSlug,
         chatEntryId,
         request,
         user,
