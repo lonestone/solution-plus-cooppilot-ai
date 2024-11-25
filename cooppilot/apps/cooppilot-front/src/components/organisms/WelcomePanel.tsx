@@ -9,20 +9,7 @@ import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, HandIcon, PointerIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-
-type AgentInfo = {
-  projectSlug: string;
-  description: string;
-};
-
-// TODO update agent project slugs
-const agentProjectSlugs = [
-  "agent-formation",
-  "next-2",
-  "next-3",
-  "next-4",
-  "next-5",
-];
+import { z } from "zod";
 
 export function WelcomePanel({
   projectSlug,
@@ -43,24 +30,24 @@ export function WelcomePanel({
     keyPrefix: "Welcome",
   });
 
-  const agentInfos: AgentInfo[] = useMemo(
-    () =>
-      agentProjectSlugs.map((projectSlug) => ({
-        projectSlug,
-        description: t(`agents.${projectSlug}.description`),
-      })),
-    [t]
-  );
+  const agents = useMemo(() => {
+    const data = z
+      .record(
+        z.string(),
+        z.object({ description: z.string(), questions: z.array(z.string()) })
+      )
+      .parse(t("agents", { returnObjects: true }));
+
+    return Object.entries(data).map(([projectSlug, info]) => ({
+      projectSlug,
+      ...info,
+    }));
+  }, [t]);
 
   const questions: string[] | null = useMemo(() => {
     if (projectSlug == null) return null;
-    const qs = t(`agents.${projectSlug}.questions`, {
-      returnObjects: true,
-    });
-    return Array.isArray(qs)
-      ? qs.filter((q): q is string => typeof q === "string")
-      : null;
-  }, [projectSlug, t]);
+    return agents.find((ai) => ai.projectSlug === projectSlug)?.questions ?? [];
+  }, [agents, projectSlug]);
 
   const debouncedQuestions = useDebounceValue(questions, 0, 500);
 
@@ -160,7 +147,7 @@ export function WelcomePanel({
               >
                 <Carousel orientation="horizontal">
                   <CarouselContent className="-ml-2">
-                    {agentInfos.map((agentInfo) => (
+                    {agents.map((agentInfo) => (
                       <CarouselItem
                         key={agentInfo.projectSlug}
                         className="pl-2 basis-1/5"

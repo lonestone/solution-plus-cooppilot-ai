@@ -14,8 +14,8 @@
     "selectQuestion": "Sélectionnez une question",
     "orTypeYourQuestion": "ou tapez directement votre question",
     "agents": {
-      "agent-formation": {
-        "description": "Générer un quizz et me challenger",
+      "agent-tc": {
+        "description": "TC",
         "questions": [
           "Comment générer un quizz personnalisé pour un agent ?",
           "Comment créer un quizz personnalisé pour un agent ?",
@@ -24,8 +24,8 @@
           "Comment créer un quizz personnalisé pour un agent ?"
         ]
       },
-      "next-2": {
-        "description": "Trouver des conseils personnalisés",
+      "agent-hse": {
+        "description": "HSE",
         "questions": [
           "TODO",
           "TODO",
@@ -33,24 +33,18 @@
           "TODO"
         ]
       },
-      "next-3": {
-        "description": "Maximiser mon temps dans ma journée",
+      "agent-manager": {
+        "description": "Manager",
         "questions": [
           "TODO",
           "TODO",
           "TODO"
         ]
       },
-      "next-4": {
-        "description": "Me former avec une thématique précise",
+      "agent-marketing": {
+        "description": "Marketing",
         "questions": [
           "TODO",
-          "TODO"
-        ]
-      },
-      "next-5": {
-        "description": "Générer un rapport avec des données détaillées",
-        "questions": [
           "TODO"
         ]
       }
