@@ -53,7 +53,7 @@ module "base" {
       assign_public_ip = true // NOTE mandatory for now: without this, the service will not be able to pull the image from ECR
       lb_target_group = {
         host_header       = "api.splus-cooppilot.ai.lonestone.studio",
-        health_check_path = "/" // TODO "/health-check"
+        health_check_path = "/health-check"
       }
       container_port = 3000,
       cpu            = 512,  // TODO test with 512

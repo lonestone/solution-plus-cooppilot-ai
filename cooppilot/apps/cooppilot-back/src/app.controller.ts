@@ -8,8 +8,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @AccessRoles([AccessRole.Public])
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('health-check')
+  getHealthCheck() {
+    return { status: 'ok', id: 'cooppilot-back' };
   }
 }
