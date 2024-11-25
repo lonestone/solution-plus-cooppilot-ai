@@ -3,34 +3,48 @@ import { chatEntrySchema } from "@common/types/back/chat";
 import { useContext } from "react";
 import useSWRMutation from "swr/mutation";
 
-const URL = `${import.meta.env.VITE_BACK_END_API_ENDPOINT}/ai/chat/create`;
-const fetcher =
-  (token: string) =>
-  async (
-    _: object,
-    {
-      arg,
-    }: {
-      arg: string;
-    }
-  ) => {
-    const message = arg;
-    const res = await fetch(URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ message }),
-    });
+async function fetcher(
+  {
+    url,
+    token,
+  }: {
+    url: string;
+    token: string;
+  },
+  { arg: message }: { arg: string }
+) {
+  if (token == null) throw new Error("No token");
 
-    if (res.status !== 201) throw new Error(await res.text());
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ message }),
+  });
 
-    return chatEntrySchema.parse(await res.json());
-  };
+  if (res.status !== 201) throw new Error(await res.text());
 
-export const useCreateChatEntry = () => {
-  const { token: token } = useContext(AuthContext);
+  return chatEntrySchema.parse(await res.json());
+}
 
-  return useSWRMutation({ key: URL }, fetcher(token));
+export const useCreateChatEntry = ({
+  projectSlug,
+}: {
+  projectSlug: string | undefined;
+}) => {
+  const { token } = useContext(AuthContext);
+
+  return useSWRMutation(
+    projectSlug == null || token == null
+      ? null
+      : {
+          url: `${
+            import.meta.env.VITE_BACK_END_API_ENDPOINT
+          }/ai/chat/_/${projectSlug}/create`,
+          token,
+        },
+    fetcher
+  );
 };

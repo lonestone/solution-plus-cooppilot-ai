@@ -5,6 +5,7 @@ import Chat from "./Chat";
 export function Main() {
   const [projectSlug, setProjectSlug] = useState<string>();
   const [question, setQuestion] = useState<string>();
+  const [panelHidden, setPanelHidden] = useState<boolean>(false);
 
   const onProjectSelect = useCallback((projectSlug: string) => {
     setProjectSlug(projectSlug);
@@ -19,16 +20,30 @@ export function Main() {
     setQuestion(question);
   }, []);
 
+  const onEmptyChange = useCallback((empty: boolean) => {
+    setPanelHidden(!empty);
+  }, []);
+
+  const onQuestionChange = useCallback((question: string) => {
+    setQuestion(question.length === 0 ? undefined : question);
+  }, []);
+
   return (
     <div className="flex flex-col h-full">
       <WelcomePanel
         projectSlug={projectSlug}
         question={question}
+        hidden={panelHidden}
         onProjectSelect={onProjectSelect}
         onProjectClear={onProjectClear}
         onQuestionSelect={onQuestionSelect}
       />
-      <Chat projectSlug={projectSlug} question={question} />
+      <Chat
+        projectSlug={projectSlug}
+        initialQuestion={question}
+        onEmptyChange={onEmptyChange}
+        onQuestionChange={onQuestionChange}
+      />
     </div>
   );
 }

@@ -1,9 +1,9 @@
+import logo from "@/assets/logo.png";
 import ChatEntryFeedback from "@/components/molecules/ChatEntryFeedback";
 import ChatReasoningLoader from "@/components/molecules/ChatReasoningLoader";
 import ChatAnswerDetails from "@/components/organisms/ChatAnswerDetails";
 import { useChatEntryPolling } from "@/hooks/useChatEntry";
 import { ChatEntry } from "@common/types/back/chat";
-import { User } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
@@ -66,13 +66,14 @@ const ChatAnswer = ({
   }, [chatEntry, t]);
 
   return (
-    <div className="flex flex-col gap-2 items-start" id="list-view-item">
-      <div className="flex flex-row items-start gap-4 w-full">
-        <div className="rounded-full bg-primary p-2 text-xs text-white">
-          <User />
+    <div className="flex flex-col items-start" id="list-view-item">
+      <div className="flex flex-row items-start gap-2 w-full">
+        <div className="rounded-full bg-background p-2 text-xs text-white">
+          {/* <User /> */}
+          <img src={logo} alt="Logo" width={25} />
         </div>
         <div
-          className="w-full md:max-w-[calc(100%-120px)] markdown-content overflow-hidden"
+          className="w-full md:max-w-[calc(100%-120px)] py-2 px-4 markdown-content overflow-hidden"
           style={{ wordBreak: "break-word" }}
         >
           {Comp}
@@ -83,6 +84,7 @@ const ChatAnswer = ({
       )}
       {chatEntry?.queryStatus === "DONE" && isActive && (
         <ChatEntryFeedback
+          projectSlug={projectId}
           chatEntryId={chatEntryId}
           userFeedback={chatEntry?.answerUserFeedbacks?.[0]}
         />

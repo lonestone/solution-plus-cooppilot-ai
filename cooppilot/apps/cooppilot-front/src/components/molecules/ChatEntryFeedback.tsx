@@ -10,24 +10,30 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { useChatEntryFeedbackMutation } from "@/hooks/useChatEntryFeedbackMutation";
+import { cn } from "@/lib/utils";
 import { ChatEntryFeedback as ChatEntryFeedbackType } from "@common/types/back/chat";
 import { ThumbsDown, ThumbsUp } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 type ChatEntryFeedbackProps = {
+  projectSlug: string;
   chatEntryId: number;
   userFeedback?: ChatEntryFeedbackType;
   onFeedbackUpdated?: (feedback: ChatEntryFeedbackType) => void;
 };
 
 const ChatEntryFeedback = ({
+  projectSlug,
   chatEntryId,
   userFeedback,
   onFeedbackUpdated,
 }: ChatEntryFeedbackProps) => {
   const { t } = useTranslation();
-  const { trigger } = useChatEntryFeedbackMutation(chatEntryId);
+  const { trigger } = useChatEntryFeedbackMutation({
+    projectSlug,
+    chatEntryId,
+  });
   const [feedback, setFeedback] = useState<ChatEntryFeedbackType | undefined>(
     userFeedback
   );
@@ -49,10 +55,7 @@ const ChatEntryFeedback = ({
     };
 
     try {
-      const res = await trigger({
-        chatEntryId,
-        feedback,
-      });
+      const res = await trigger({ feedback });
       setFeedback(feedback);
       setFeedbackDialogState({
         open: false,
@@ -84,8 +87,10 @@ const ChatEntryFeedback = ({
 
   return (
     <>
-      <div className="flex flex-row items-center gap-2 rounded-2xl bg-stone-800 p-2 px-3 ml-[3.5rem]">
-        <ThumbsUp
+      <div className="flex flex-row items-center gap-2 rounded-2xl ml-[3.5rem]">
+        <Button
+          size="icon"
+          variant={"ghost"}
           onClick={() =>
             feedback?.evaluation !== "POSITIVE" &&
             setFeedbackDialogState({
@@ -94,14 +99,18 @@ const ChatEntryFeedback = ({
               comment: "",
             })
           }
-          className={
-            " size-4 cursor-pointer" +
-            (feedback?.evaluation === "POSITIVE"
-              ? " text-green-400"
-              : " text-stone-600 hover:text-stone-200")
-          }
-        />
-        <ThumbsDown
+        >
+          <ThumbsUp
+            className={cn(
+              feedback?.evaluation === "POSITIVE"
+                ? "text-green-400"
+                : "text-stone-600 hover:text-stone-200"
+            )}
+          />
+        </Button>
+        <Button
+          size="icon"
+          variant={"ghost"}
           onClick={() =>
             feedback?.evaluation !== "NEGATIVE" &&
             setFeedbackDialogState({
@@ -110,13 +119,15 @@ const ChatEntryFeedback = ({
               comment: "",
             })
           }
-          className={
-            "size-4 cursor-pointer" +
-            (feedback?.evaluation === "NEGATIVE"
-              ? " text-red-400"
-              : " text-stone-600 hover:text-stone-200")
-          }
-        />
+        >
+          <ThumbsDown
+            className={cn(
+              feedback?.evaluation === "NEGATIVE"
+                ? " text-red-400"
+                : " text-stone-600 hover:text-stone-200"
+            )}
+          />
+        </Button>
       </div>
       {feedbackDialogState.open && (
         <Dialog
@@ -129,7 +140,7 @@ const ChatEntryFeedback = ({
             })
           }
         >
-          <DialogContent className="dark:bg-stone-800 bg-stone-800">
+          <DialogContent>
             <DialogHeader>
               <DialogTitle>{t(`Chat.Feedback.title`)}</DialogTitle>
               <DialogDescription>
@@ -140,7 +151,6 @@ const ChatEntryFeedback = ({
               <Textarea
                 placeholder={t("Chat.Feedback.commentPlaceholder")}
                 value={feedbackDialogState.comment}
-                className="border-stone-600"
                 onChange={(e) =>
                   setFeedbackDialogState({
                     ...feedbackDialogState,

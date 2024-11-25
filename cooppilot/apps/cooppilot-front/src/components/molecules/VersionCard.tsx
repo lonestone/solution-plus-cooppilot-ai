@@ -15,14 +15,10 @@ const VersionCard = ({ title, categories }: VersionCardProps) => {
       <div className="flex flex-col gap-6">
         {categories.map((category) => (
           <div className="flex flex-col gap-2" key={category.title}>
-            <span className="text-stone-200 font-semibold">
-              {category.title}
-            </span>
+            <span className="font-semibold">{category.title}</span>
             <div className="flex flex-col">
               {category.items.map((item) => (
-                <span className="text-stone-400" key={item}>
-                  - {item}
-                </span>
+                <span key={item}>- {item}</span>
               ))}
             </div>
           </div>

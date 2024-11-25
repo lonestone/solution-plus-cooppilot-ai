@@ -9,7 +9,7 @@ const HelpCard = ({ title, desc }: HelpCardProps) => {
   return (
     <Card>
       <span className="text-xl font-bold">{title}</span>
-      <span className="text-stone-400">{desc}</span>
+      <span>{desc}</span>
     </Card>
   );
 };

@@ -10,6 +10,7 @@ import {
   useEffect,
   useImperativeHandle,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -23,8 +24,9 @@ export type ChatEntriesRef = {
 
 const ChatEntries = forwardRef<ChatEntriesRef, ChatEntriesProps>(
   ({ chatEntries }: ChatEntriesProps, ref: Ref<ChatEntriesRef>) => {
-    const { scrollToBottom, scrollPositionRef, scrollableElemRef } =
-      useScrollable();
+    const scrollableElemRef = useRef(null);
+    const { scrollToBottom, scrollPositionRef } =
+      useScrollable(scrollableElemRef);
     const { data: lastChatCleanup } = useLastChatCleanup();
     const [hasLoaded, setHasLoaded] = useState(false);
     const [nbLoaded, setNbLoaded] = useState(0);

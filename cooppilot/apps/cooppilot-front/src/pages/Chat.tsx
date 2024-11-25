@@ -3,7 +3,6 @@ import ChatEntries, {
 } from "@/components/organisms/ChatEntries";
 import Prompt from "@/components/organisms/Prompt";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import { useChatEntries } from "@/hooks/useChatEntries";
 import { useCreateChatEntry } from "@/hooks/useCreateChatEntry";
 import { useLastChatCleanupMutation } from "@/hooks/useLastChatCleanupMutation";
@@ -12,16 +11,19 @@ import { cn } from "@/lib/utils";
 import { ChatEntry } from "@common/types/back/chat";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 export type Entry = ChatEntry;
 
 const Chat = ({
   projectSlug,
-  question,
+  initialQuestion,
+  onEmptyChange,
+  onQuestionChange,
 }: {
   projectSlug: string | undefined;
-  question: string | undefined;
+  initialQuestion: string | undefined;
+  onEmptyChange: (empty: boolean) => void;
+  onQuestionChange: (question: string) => void;
 }) => {
   const {
     data: chatEntries,
@@ -30,16 +32,24 @@ const Chat = ({
     mutate,
   } = useChatEntries({ projectSlug });
   const { trigger: clearChatHistory } = useLastChatCleanupMutation();
-  const { trigger: createChatEntry } = useCreateChatEntry();
+  const { trigger: createChatEntry } = useCreateChatEntry({ projectSlug });
 
   const chatEntriesRef = useRef<ChatEntriesRef>(null);
 
+  const [touched, setTouched] = useState(false);
+
   useEffect(() => {
-    if (projectSlug == null) clearChatHistory();
-  }, [clearChatHistory, projectSlug]);
+    if (projectSlug == null) {
+      setTouched(false);
+      clearChatHistory();
+      mutate([]);
+    }
+  }, [clearChatHistory, mutate, projectSlug]);
 
   const sendMessage = useCallback(
     async (message: string) => {
+      setTouched(true);
+
       await createChatEntry(message);
 
       mutate();
@@ -51,13 +61,16 @@ const Chat = ({
     return chatEntries ?? [];
   }, [chatEntries]);
 
+  useEffect(() => {
+    onEmptyChange((isLoading || entries.length === 0) && !touched);
+  }, [onEmptyChange, isLoading, entries, touched]);
+
   // NOTE always ready for now
   const [isReady, setIsReady] = useState(true);
 
-  const { scrollPositionRef, scrollToBottom } = useScrollable(
-    document.documentElement,
-    20
-  );
+  const docRef = useRef(document.documentElement);
+
+  const { scrollPositionRef, scrollToBottom } = useScrollable(docRef, 20);
 
   const [firstScrollCalled, setFirstScrollCalled] = useState(false);
   useEffect(() => {
@@ -95,7 +108,11 @@ const Chat = ({
           </div>
           <div className="sticky bottom-[1.5rem]">
             <div className="px-[1px]">
-              <Prompt initialValue={question} onSubmit={sendMessage} />
+              <Prompt
+                initialValue={initialQuestion}
+                onValueChange={onQuestionChange}
+                onSubmit={sendMessage}
+              />
             </div>
           </div>
         </div>

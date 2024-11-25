@@ -99,9 +99,9 @@ export const Help = () => {
           <div className="flex flex-col gap-4 cursor-pointer">
             <div
               className={
-                mostVisibleElementRef === useCasesRef.current
-                  ? "text-white"
-                  : "text-gray-500"
+                mostVisibleElementRef !== useCasesRef.current
+                  ? "opacity-40"
+                  : undefined
               }
               onClick={() =>
                 useCasesRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -111,9 +111,9 @@ export const Help = () => {
             </div>
             <div
               className={
-                mostVisibleElementRef === featuresRef.current
-                  ? "text-white"
-                  : "text-gray-500"
+                mostVisibleElementRef !== featuresRef.current
+                  ? "opacity-40"
+                  : undefined
               }
               onClick={() =>
                 featuresRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -123,9 +123,9 @@ export const Help = () => {
             </div>
             <div
               className={
-                mostVisibleElementRef === privacyRef.current
-                  ? "text-white"
-                  : "text-gray-500"
+                mostVisibleElementRef !== privacyRef.current
+                  ? "opacity-40"
+                  : undefined
               }
               onClick={() =>
                 privacyRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -135,9 +135,9 @@ export const Help = () => {
             </div>
             <div
               className={
-                mostVisibleElementRef === experimentalModeRef.current
-                  ? "text-white"
-                  : "text-gray-500"
+                mostVisibleElementRef !== experimentalModeRef.current
+                  ? "opacity-40"
+                  : undefined
               }
               onClick={() =>
                 experimentalModeRef.current?.scrollIntoView({

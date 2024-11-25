@@ -12,6 +12,7 @@
     "subTitle": "De quoi avez-vous besoin aujourd'hui ?",
     "selectAgent": "Sélectionnez un domaine métier",
     "selectQuestion": "Sélectionnez une question",
+    "orTypeYourQuestion": "ou tapez directement votre question",
     "agents": {
       "agent-formation": {
         "description": "Générer un quizz et me challenger",

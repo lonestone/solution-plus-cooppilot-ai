@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { RefObject, useCallback, useEffect, useRef } from "react";
 
 export enum ScrollPosition {
   Middle,
@@ -6,54 +6,58 @@ export enum ScrollPosition {
 }
 
 export default function useScrollable(
-  scrollableElem: HTMLElement,
+  scrollableElem: RefObject<HTMLElement | undefined>,
   isBottomThreshold: number = 1
 ) {
   const scrollPositionRef = useRef<ScrollPosition>(ScrollPosition.Middle);
 
   const scrollToBottom = useCallback(() => {
-    if (!scrollableElem) return;
-    const scrollTop = scrollableElem.scrollHeight - scrollableElem.clientHeight;
-    const scrollLength = Math.abs(scrollableElem.scrollTop - scrollTop);
+    if (scrollableElem.current == null) return;
+    const scrollTop =
+      scrollableElem.current.scrollHeight - scrollableElem.current.clientHeight;
+    const scrollLength = Math.abs(scrollableElem.current.scrollTop - scrollTop);
     if (scrollLength === 0) {
       return;
     }
 
-    scrollableElem.scrollTo({
+    scrollableElem.current.scrollTo({
       top: scrollTop,
       left: 0,
       behavior:
-        scrollLength > scrollableElem.clientHeight * 2 ? "instant" : "smooth",
+        scrollLength > scrollableElem.current.clientHeight * 2
+          ? "instant"
+          : "smooth",
     });
   }, [scrollableElem]);
 
   // Scroll to bottom when content size changes and scroll position in set to bottom
   useEffect(() => {
-    if (!scrollableElem) {
+    if (scrollableElem.current == null) {
       console.error("useScrollable: Elem is null");
       return;
     }
 
+    const elem = scrollableElem.current;
+
     let animationFrameId: number | null = null;
-    let previousScrollHeight = scrollableElem.scrollHeight;
+    let previousScrollHeight = elem.scrollHeight;
     function handler() {
       // Scroll height has increased
-      if (scrollableElem.scrollHeight > previousScrollHeight) {
+      if (elem.scrollHeight > previousScrollHeight) {
         // Keep scroll position at bottom
         if (scrollPositionRef.current === ScrollPosition.Bottom) {
-          scrollableElem.scrollTop =
-            scrollableElem.scrollHeight - scrollableElem.clientHeight;
+          elem.scrollTop = elem.scrollHeight - elem.clientHeight;
         }
       }
 
       // Update scroll position
       scrollPositionRef.current =
-        scrollableElem.scrollTop + isBottomThreshold >=
-        scrollableElem.scrollHeight - scrollableElem.clientHeight
+        elem.scrollTop + isBottomThreshold >=
+        elem.scrollHeight - elem.clientHeight
           ? ScrollPosition.Bottom
           : ScrollPosition.Middle;
 
-      previousScrollHeight = scrollableElem.scrollHeight;
+      previousScrollHeight = elem.scrollHeight;
 
       animationFrameId = window.requestAnimationFrame(handler);
     }

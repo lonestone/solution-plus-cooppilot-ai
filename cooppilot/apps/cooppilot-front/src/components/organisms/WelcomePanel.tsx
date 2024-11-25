@@ -5,7 +5,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, HandIcon } from "lucide-react";
+import { ChevronLeftIcon, HandIcon, PointerIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -26,12 +26,14 @@ const agentProjectSlugs = [
 export function WelcomePanel({
   projectSlug,
   question,
+  hidden,
   onProjectSelect,
   onProjectClear,
   onQuestionSelect,
 }: {
   projectSlug: string | undefined;
   question: string | undefined;
+  hidden: boolean;
   onProjectSelect: (projectSlug: string) => void;
   onProjectClear: () => void;
   onQuestionSelect: (question: string) => void;
@@ -68,7 +70,7 @@ export function WelcomePanel({
             "my-2 lg:my-4",
             "transition-opacity data-[state=open]:opacity-0 data-[state=closed]:opacity-100"
           )}
-          data-state={question == null ? "open" : "closed"}
+          data-state={question == null && !hidden ? "open" : "closed"}
         >
           <Button
             className="rounded-full size-16 bg-gradient-to-r from-[#C43437] to-[#ECBF30]"
@@ -84,7 +86,7 @@ export function WelcomePanel({
             "my-12 lg:my-24 flex flex-col gap-10",
             "transition-opacity data-[state=open]:opacity-100 data-[state=closed]:opacity-0"
           )}
-          data-state={question == null ? "open" : "closed"}
+          data-state={question == null && !hidden ? "open" : "closed"}
         >
           <div className="text-3xl lg:text-6xl leading-[125%]">
             <div className="font-bold inline-block bg-gradient-to-r from-[#C73C37] to-[#EDC642] text-transparent bg-clip-text">
@@ -148,7 +150,6 @@ export function WelcomePanel({
                 className={cn(
                   "h-full",
                   "relative top-0",
-                  // "transition-all",
                   "transition-[top] ease-in-out delay-150 duration-300",
                   "group-data-[step='1']/step:-top-[100%]",
                   "flex flex-col [&>div]:flex-[0_0_100%]"
@@ -183,6 +184,19 @@ export function WelcomePanel({
                   </CarouselContent>
                 </Carousel>
               </div>
+            </div>
+
+            <div
+              className={cn(
+                "transition-opacity opacity-0 delay-0",
+                "group-data-[step='1']/step:opacity-100",
+                "group-data-[step='1']/step:delay-1000",
+                "flex gap-4 text-lg justify-center py-10"
+              )}
+              data-active={projectSlug != null}
+            >
+              {t("orTypeYourQuestion")}
+              <PointerIcon className="rotate-180" />
             </div>
           </div>
         </div>

@@ -3,46 +3,59 @@ import { ChatEntryFeedback } from "@common/types/back/chat";
 import { useContext } from "react";
 import useSWRMutation from "swr/mutation";
 
-const fetcher =
-  (token: string) =>
-  async (
-    _: object,
-    {
-      arg,
-    }: {
-      arg: {
-        chatEntryId: number;
-        feedback: ChatEntryFeedback;
-      };
-    }
-  ) => {
-    const { chatEntryId, feedback } = arg;
-    const URL = `${
-      import.meta.env.VITE_BACK_END_API_ENDPOINT
-    }/ai/chat/${chatEntryId}/feedback`;
+async function fetcher(
+  {
+    url,
+    token,
+  }: {
+    url: string;
+    token: string;
+  },
+  {
+    arg,
+  }: {
+    arg: {
+      feedback: ChatEntryFeedback;
+    };
+  }
+) {
+  if (token == null) throw new Error("No token");
 
-    const res = await fetch(URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(feedback),
-    });
+  const { feedback } = arg;
 
-    if (res.status !== 200 && res.status !== 201)
-      throw new Error(await res.text());
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(feedback),
+  });
 
-    return res.status;
-  };
+  if (res.status !== 200 && res.status !== 201)
+    throw new Error(await res.text());
 
-export const useChatEntryFeedbackMutation = (chatEntryId: number) => {
-  const { token: token } = useContext(AuthContext);
+  return res.status;
+}
+
+export const useChatEntryFeedbackMutation = ({
+  projectSlug,
+  chatEntryId,
+}: {
+  projectSlug: string | undefined;
+  chatEntryId: number;
+}) => {
+  const { token } = useContext(AuthContext);
 
   return useSWRMutation(
-    {
-      key: `/ai/chat/${chatEntryId}/feedback`,
-    },
-    fetcher(token)
+    projectSlug == null || chatEntryId == null || token == null
+      ? null
+      : {
+          url: `${
+            import.meta.env.VITE_BACK_END_API_ENDPOINT
+          }/ai/chat/_/${projectSlug}/${chatEntryId}/feedback`,
+          token,
+        },
+    fetcher
   );
 };

@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
 
 export type CategoryLink = {
@@ -33,10 +34,10 @@ const TopBarNavCategory = ({
               key={link.name}
               to={link.href}
               onClick={() => onNavigate?.()}
-              className={
-                "flex flex-row items-center gap-2 py-4 px-4 hover:bg-stone-800" +
-                (pathname === link.href ? " bg-stone-700" : "")
-              }
+              className={cn(
+                "flex flex-row items-center gap-2 py-4 px-4",
+                pathname === link.href && "bg-primary text-white"
+              )}
             >
               <div className="text-gray">{link.icon}</div>
               <span className="text-gray-text text-sm">{link.name}</span>

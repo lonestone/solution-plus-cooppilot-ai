@@ -27,7 +27,7 @@ const TopBar = () => {
       </div>
       <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
         <DrawerTrigger asChild>
-          <Button className="rounded-full bg-stone-700" size="icon">
+          <Button className="rounded-full" size="icon">
             {!drawerOpen && <Menu className="size-5" />}
             {drawerOpen && <Cross2Icon className="size-5" />}
           </Button>
@@ -36,12 +36,12 @@ const TopBar = () => {
           <div className="h-full w-full overflow-y-auto">
             <div className="p-4 w-full">
               <Link
-                to="/chat"
+                to="/"
                 onClick={onNavigate}
                 className="rounded-full justify-center items-center flex flex-row py-[.7rem] bg-gradient-to-r from-gradient-from to-gradient-to p-2 text-gray-text text-sm"
               >
-                <Bot className="size-5 text-white" />
-                <span className="ml-2 text-white">{t("talkWith")}</span>
+                <Bot className="size-5" />
+                <span className="ml-2">{t("talkWith")}</span>
               </Link>
             </div>
             {unnamedCategories.map((category, index) => (

@@ -10,10 +10,12 @@ const MAX_QUERY_LENGTH = 1000;
 
 export default function Prompt({
   initialValue,
+  onValueChange,
   onSubmit,
   className,
 }: {
   initialValue: string | undefined;
+  onValueChange: (value: string) => void;
   onSubmit: (query: string) => void;
   className?: string;
 }) {
@@ -21,6 +23,10 @@ export default function Prompt({
   useEffect(() => {
     if (initialValue != null) setQuery(initialValue);
   }, [initialValue]);
+
+  useEffect(() => {
+    onValueChange(query);
+  }, [onValueChange, query]);
 
   const canSend = useMemo(
     () => query.trim().length >= MIN_QUERY_LENGTH,
@@ -62,9 +68,10 @@ export default function Prompt({
             id="message"
             placeholder="Taper votre message pour discuter avec l'agent IA"
             className={cn(
-              "h-4 max-h-16 resize-none border-0 shadow-none bg-transparent text-md text-black focus-visible:ring-0 focus-visible:ring-offset-0",
+              "h-12 max-h-16 resize-none",
+              "border-0 shadow-none bg-transparent text-md text-black focus-visible:ring-0 focus-visible:ring-offset-0",
               "placeholder:text-gray-400 disabled:placeholder:text-white",
-              //   "leading-tight"
+              // NOTE: vertical alignement fix
               "-mb-[6px]"
             )}
             minHeight={42}
