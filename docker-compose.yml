@@ -19,4 +19,6 @@ services:
     image: mcr.microsoft.com/devcontainers/typescript-node:dev-20
     volumes:
       - .:/workspace:cached
+    ports:
+      - 5174:5173
     command: /bin/sh -c "while sleep 1000; do :; done"
