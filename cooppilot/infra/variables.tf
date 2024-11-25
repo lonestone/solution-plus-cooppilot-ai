@@ -83,6 +83,3 @@ variable "cooppilot_db_name" {
 variable "cooppilot_organization_id" {
   type = string
 }
-variable "cooppilot_project_id" {
-  type = string
-}

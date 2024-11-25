@@ -14,14 +14,12 @@ export class AiBackEndService {
   private readonly logger = new Logger(AiBackEndService.name);
 
   private orgId: string;
-  // private projId: string;
 
   constructor(
     private readonly prisma: PrismaService,
     readonly configService: ConfigService,
   ) {
     this.orgId = configService.getOrThrow('ORGANIZATION_ID');
-    // this.projId = configService.getOrThrow('PROJECT_ID');
 
     this.logger.log(`Using orgId: "${this.orgId}"`);
   }

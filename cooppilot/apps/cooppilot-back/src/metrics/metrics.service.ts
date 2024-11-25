@@ -37,11 +37,9 @@ export class MetricsService {
   private readonly logger = new Logger(MetricsService.name);
 
   private orgId: string;
-  private projId: string;
 
   constructor(configService: ConfigService) {
     this.orgId = configService.getOrThrow('ORGANIZATION_ID');
-    this.projId = configService.getOrThrow('PROJECT_ID');
   }
 
   public getMetricsCsvStream(
@@ -102,7 +100,6 @@ export class MetricsService {
     do {
       const res = await orgHistoryFetcher({
         orgId: this.orgId,
-        projId: this.projId,
         authHeaders,
         date: {
           start: startDate,

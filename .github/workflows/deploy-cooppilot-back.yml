@@ -1,0 +1,28 @@
+name: Deploy Cooppilot Back
+
+on:
+  push:
+    branches:
+      - deploy/production
+    paths:
+      - "base/apps/common/**"
+      - "cooppilot/apps/cooppilot-back/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Cooppilot Back to ECS
+    uses: ./.github/workflows/reusable-deploy-to-ecs.yml
+    with:
+      ecs_cluster: cooppilot-cluster
+      app_name: cooppilot-back-cooppilot
+      build_dir: ./
+      dockerfile_dir: ./cooppilot/apps/cooppilot-back/
+      build_context: ./
+      aws_region: eu-west-3
+      environment: production
+      review_mode: false
+    secrets: inherit

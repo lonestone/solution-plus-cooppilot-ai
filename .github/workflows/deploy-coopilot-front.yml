@@ -1,0 +1,59 @@
+name: Deploy Cooppilot Front
+
+on:
+  push:
+    branches:
+      - deploy/production
+    paths:
+      - "base/apps/common/**"
+      - "cooppilot/apps/cooppilot-front/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy Cooppilot Front to Netlify
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./cooppilot/apps/cooppilot-front
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT_TOKEN_FOR_SUBMODULE }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.1.4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.14.x"
+          cache: "pnpm"
+          cache-dependency-path: |
+            base/apps/common/pnpm-lock.yaml
+            cooppilot/apps/cooppilot-front/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build
+        env:
+          VITE_BACK_END_API_ENDPOINT: "https://api.splus-cooppilot.ai.lonestone.io"
+        run: pnpm run build
+
+      - name: Deploy
+        run: |
+          pnpm --package=netlify-cli dlx netlify deploy \
+          --dir ./dist \
+          -a ${{ secrets.NETLIFY_PAT }} \
+          -s 757ef4e1-5c1f-44e6-b3bd-c1791daaf4ef \
+          --prod \
+          --message "Deploy from GitHub Actions [sha: ${{ github.sha }}]"
