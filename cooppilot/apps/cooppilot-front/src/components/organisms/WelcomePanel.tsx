@@ -4,6 +4,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { useDebounceValue } from "@/hooks/useDebounceValue";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, HandIcon, PointerIcon } from "lucide-react";
 import { useMemo } from "react";
@@ -51,19 +52,21 @@ export function WelcomePanel({
     [t]
   );
 
-  const questions: string[] = useMemo(() => {
-    if (projectSlug == null) return [];
+  const questions: string[] | null = useMemo(() => {
+    if (projectSlug == null) return null;
     const qs = t(`agents.${projectSlug}.questions`, {
       returnObjects: true,
     });
     return Array.isArray(qs)
       ? qs.filter((q): q is string => typeof q === "string")
-      : [];
+      : null;
   }, [projectSlug, t]);
+
+  const debouncedQuestions = useDebounceValue(questions, 0, 500);
 
   return (
     <div className="relative w-full">
-      <div className="relative mx-auto max-w-[932px]  z-10">
+      <div className="relative mx-auto max-w-[932px] z-10">
         <div
           className={cn(
             "sticky group",
@@ -77,18 +80,18 @@ export function WelcomePanel({
             onClick={onProjectClear}
           >
             <HandIcon className="!size-8 group-data-[state=closed]:wave" />
-            {/* <div className="text-[40px]">👋🏾</div> */}
           </Button>
         </div>
         <div
           className={cn(
             "absolute w-full",
-            "my-12 lg:my-24 flex flex-col gap-10",
-            "transition-opacity data-[state=open]:opacity-100 data-[state=closed]:opacity-0"
+            "my-6 lg:my-12 flex flex-col gap-10",
+            "transition-opacity data-[state=open]:opacity-100 data-[state=closed]:opacity-0",
+            "data-[state=closed]:pointer-events-none"
           )}
           data-state={question == null && !hidden ? "open" : "closed"}
         >
-          <div className="text-3xl lg:text-6xl leading-[125%]">
+          <div className="text-3xl lg:text-6xl lg:leading-[125%]">
             <div className="font-bold inline-block bg-gradient-to-r from-[#C73C37] to-[#EDC642] text-transparent bg-clip-text">
               {t("title")}
             </div>
@@ -173,14 +176,15 @@ export function WelcomePanel({
 
                 <Carousel orientation="horizontal">
                   <CarouselContent className="-ml-2">
-                    {questions.map((question, index) => (
-                      <CarouselItem key={index} className="pl-2 basis-1/5">
-                        <WelcomeButton
-                          label={question}
-                          onClick={() => onQuestionSelect(question)}
-                        />
-                      </CarouselItem>
-                    ))}
+                    {debouncedQuestions &&
+                      debouncedQuestions.map((question, index) => (
+                        <CarouselItem key={index} className="pl-2 basis-1/5">
+                          <WelcomeButton
+                            label={question}
+                            onClick={() => onQuestionSelect(question)}
+                          />
+                        </CarouselItem>
+                      ))}
                   </CarouselContent>
                 </Carousel>
               </div>

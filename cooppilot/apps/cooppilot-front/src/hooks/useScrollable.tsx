@@ -32,10 +32,7 @@ export default function useScrollable(
 
   // Scroll to bottom when content size changes and scroll position in set to bottom
   useEffect(() => {
-    if (scrollableElem.current == null) {
-      console.error("useScrollable: Elem is null");
-      return;
-    }
+    if (scrollableElem.current == null) return;
 
     const elem = scrollableElem.current;
 

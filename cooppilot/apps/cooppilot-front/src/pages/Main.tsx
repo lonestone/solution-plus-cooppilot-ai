@@ -29,7 +29,7 @@ export function Main() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="grid grid-rows-[max-content_1fr] h-full">
       <WelcomePanel
         projectSlug={projectSlug}
         question={question}

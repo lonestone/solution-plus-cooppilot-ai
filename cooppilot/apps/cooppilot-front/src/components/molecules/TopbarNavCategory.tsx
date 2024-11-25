@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
+import { Fragment } from "react/jsx-runtime";
 
 export type CategoryLink = {
   name: string;
@@ -29,7 +30,7 @@ const TopBarNavCategory = ({
       )}
       <div className="flex flex-col mb-8">
         {links.map((link) => (
-          <>
+          <Fragment key={link.name}>
             <Link
               key={link.name}
               to={link.href}
@@ -43,7 +44,7 @@ const TopBarNavCategory = ({
               <span className="text-gray-text text-sm">{link.name}</span>
             </Link>
             <div className="h-[1px] bg-gray opacity-50" />
-          </>
+          </Fragment>
         ))}
       </div>
     </div>

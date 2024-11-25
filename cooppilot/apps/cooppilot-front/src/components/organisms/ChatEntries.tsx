@@ -78,7 +78,7 @@ const ChatEntries = forwardRef<ChatEntriesRef, ChatEntriesProps>(
     return (
       <div
         id="list-view"
-        className="w-full justify-end overflow-y-auto space-y-4 md-pt-0 pt-4"
+        className="justify-end space-y-4 md-pt-0 pt-4"
         ref={scrollableElemRef}
       >
         {Array.isArray(entriesAfterCleanup) &&

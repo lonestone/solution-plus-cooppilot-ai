@@ -36,19 +36,33 @@ const Chat = ({
 
   const chatEntriesRef = useRef<ChatEntriesRef>(null);
 
-  const [touched, setTouched] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
+  const [isFirstScrollCalled, setIsFirstScrollCalled] = useState(false);
 
   useEffect(() => {
     if (projectSlug == null) {
-      setTouched(false);
+      mutate(undefined);
+      setIsReady(false);
+      setIsTouched(false);
+      setIsFirstScrollCalled(false);
       clearChatHistory();
-      mutate([]);
     }
   }, [clearChatHistory, mutate, projectSlug]);
 
+  useEffect(() => {
+    if (chatEntries != null) setIsReady(true);
+  }, [chatEntries]);
+
+  const entries: Entry[] = useMemo(() => chatEntries ?? [], [chatEntries]);
+
+  useEffect(() => {
+    onEmptyChange((isLoading || entries.length === 0) && !isTouched);
+  }, [onEmptyChange, isLoading, entries, isTouched]);
+
   const sendMessage = useCallback(
     async (message: string) => {
-      setTouched(true);
+      setIsTouched(true);
 
       await createChatEntry(message);
 
@@ -57,57 +71,49 @@ const Chat = ({
     [createChatEntry, mutate]
   );
 
-  const entries: Entry[] = useMemo(() => {
-    return chatEntries ?? [];
-  }, [chatEntries]);
+  // const scrollableRef = useRef(document.documentElement);
+  const scrollableRef = useRef(null);
+
+  const { scrollPositionRef, scrollToBottom } = useScrollable(
+    scrollableRef,
+    20
+  );
 
   useEffect(() => {
-    onEmptyChange((isLoading || entries.length === 0) && !touched);
-  }, [onEmptyChange, isLoading, entries, touched]);
-
-  // NOTE always ready for now
-  const [isReady, setIsReady] = useState(true);
-
-  const docRef = useRef(document.documentElement);
-
-  const { scrollPositionRef, scrollToBottom } = useScrollable(docRef, 20);
-
-  const [firstScrollCalled, setFirstScrollCalled] = useState(false);
-  useEffect(() => {
-    if (isReady && !firstScrollCalled) {
+    if (isReady && !isFirstScrollCalled) {
       scrollToBottom();
-      setFirstScrollCalled(true);
+      setIsFirstScrollCalled(true);
     }
-  }, [isReady, firstScrollCalled, scrollToBottom]);
+  }, [isReady, isFirstScrollCalled, scrollToBottom]);
 
   if (error) return <div>Error loading messages</div>;
-  if (!chatEntries) return null;
 
   return (
-    <div className="flex w-full h-full justify-center">
-      <div className="w-full max-w-[932px] flex flex-col h-full">
-        <div className="flex flex-col gap-[2.5rem] h-full w-full flex-grow overflow-hidden justify-end">
-          {/* <ChatEntries ref={chatEntriesRef} chatEntries={entries} /> */}
-          <div
-            className={cn(
-              "flex-1 mx-auto mt-4 w-full max-w-[calc(42rem+9rem)]",
-              "flex flex-col justify-end",
-              isReady ? "animate-in fade-in fill-mode-forwards" : "hidden"
-            )}
-          >
-            <ChatEntries ref={chatEntriesRef} chatEntries={entries} />
-          </div>
+    <div className="justify-end overflow-hidden">
+      <div
+        ref={scrollableRef}
+        className={cn(
+          "w-full h-full overflow-x-hidden overflow-y-auto px-10 pb-40",
+          "max-w-4xl mx-auto",
+          // "flex flex-col justify-end",
+          isReady ? "animate-in fade-in fill-mode-forwards" : "hidden"
+        )}
+      >
+        <ChatEntries ref={chatEntriesRef} chatEntries={entries} />
+      </div>
+      {chatEntries != null && (
+        <>
           <div className="sticky bottom-[10rem] pointer-events-none">
             <div className="max-w-2xl mx-auto flex justify-center">
               <ScrollButton
-                isDisabled={!isReady || !firstScrollCalled}
+                isDisabled={!isReady || !isFirstScrollCalled}
                 scrollPositionRef={scrollPositionRef}
                 onClick={scrollToBottom}
               />
             </div>
           </div>
           <div className="sticky bottom-[1.5rem]">
-            <div className="px-[1px]">
+            <div className={cn("max-w-4xl mx-auto", "px-10")}>
               <Prompt
                 initialValue={initialQuestion}
                 onValueChange={onQuestionChange}
@@ -115,8 +121,8 @@ const Chat = ({
               />
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
