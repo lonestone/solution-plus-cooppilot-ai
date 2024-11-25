@@ -6,6 +6,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.1.4",
   "scripts": {
+    "postinstall": "pnpm install --dir ../../../base/apps/common",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "dev": "nest start --watch",

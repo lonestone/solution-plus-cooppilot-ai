@@ -5,6 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@9.1.4",
   "scripts": {
+    "postinstall": "pnpm install --dir ../../../base/apps/common",
     "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

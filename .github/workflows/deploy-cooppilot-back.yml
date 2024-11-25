@@ -18,7 +18,7 @@ jobs:
     uses: ./.github/workflows/reusable-deploy-to-ecs.yml
     with:
       ecs_cluster: cooppilot-cluster
-      app_name: cooppilot-back-cooppilot
+      app_name: cooppilot-cooppilot-ai-back-service
       build_dir: ./
       dockerfile_dir: ./cooppilot/apps/cooppilot-back/
       build_context: ./
