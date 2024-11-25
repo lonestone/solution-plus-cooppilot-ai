@@ -13,7 +13,10 @@ async function bootstrap() {
   logger.log(`--------------------------------`);
 
   const app: NestExpressApplication = await NestFactory.create(AppModule, {
-    cors: true,
+    cors: {
+      // TODO INFRA change to fixed origin when DNS is ready
+      origin: '*',
+    },
   });
   const configService: ConfigService = app.get<ConfigService>(ConfigService);
 
