@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/carousel";
 import { useDebounceValue } from "@/hooks/useDebounceValue";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, HandIcon, PointerIcon } from "lucide-react";
+import { ChevronLeftIcon, HomeIcon, PointerIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
@@ -66,7 +66,8 @@ export function WelcomePanel({
             className="rounded-full size-16 bg-gradient-to-r from-[#C43437] to-[#ECBF30]"
             onClick={onProjectClear}
           >
-            <HandIcon className="!size-8 group-data-[state=closed]:wave" />
+            {/* <HandIcon className="!size-8 group-data-[state=closed]:wave" /> */}
+            <HomeIcon className="!size-8" />
           </Button>
         </div>
         <div
