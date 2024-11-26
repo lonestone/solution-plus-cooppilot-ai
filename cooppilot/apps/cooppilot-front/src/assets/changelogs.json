@@ -1,0 +1,17 @@
+{
+  "versions": [
+    {
+      "version": "0.1",
+      "date": "2024-11-20",
+      "title": "first release",
+      "categories": [
+        {
+          "title": "TODO",
+          "items": [
+            "TODO"
+          ]
+        }
+      ]
+    }
+  ]
+}
