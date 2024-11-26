@@ -74,13 +74,13 @@ export function WelcomePanel({
         <div
           className={cn(
             "absolute w-full",
-            "mt-0 xl:mt-3 2xl:mt-6 flex flex-col gap-10",
+            "mt-3 2xl:mt-6 flex flex-col gap-10",
             "transition-opacity data-[state=open]:opacity-100 data-[state=closed]:opacity-0",
             "data-[state=closed]:pointer-events-none"
           )}
           data-state={question == null && !hidden ? "open" : "closed"}
         >
-          <div className="text-xl lg:text-3xl xl:text-6xl xl:leading-[125%]">
+          <div className="text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl 2xl:leading-[125%]">
             <div className="font-bold inline-block bg-gradient-to-r from-[#C73C37] to-[#EDC642] text-transparent bg-clip-text">
               {t("title")}
             </div>
@@ -90,7 +90,7 @@ export function WelcomePanel({
             className="flex flex-col gap-4 group/step"
             data-step={projectSlug == null ? 0 : 1}
           >
-            <div className="text-xl lg:text-3xl relative">
+            <div className="text-xl xl:text-2xl relative">
               <div className="opacity-0 pointer-events-none gap-4">
                 <Button
                   variant="default"
