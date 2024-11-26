@@ -14,8 +14,8 @@ export default function Prompt({
   onSubmit,
   className,
 }: {
-  initialValue: string | undefined;
-  onValueChange: (value: string) => void;
+  initialValue?: string | undefined;
+  onValueChange?: (value: string) => void;
   onSubmit: (query: string) => void;
   className?: string;
 }) {
@@ -25,7 +25,7 @@ export default function Prompt({
   }, [initialValue]);
 
   useEffect(() => {
-    onValueChange(query);
+    onValueChange?.(query);
   }, [onValueChange, query]);
 
   const canSend = useMemo(

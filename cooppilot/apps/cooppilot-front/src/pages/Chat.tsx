@@ -10,20 +10,27 @@ import useScrollable, { ScrollPosition } from "@/hooks/useScrollable";
 import { cn } from "@/lib/utils";
 import { ChatEntry } from "@common/types/back/chat";
 import { ChevronDown } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 export type Entry = ChatEntry;
 
 const Chat = ({
   projectSlug,
-  initialQuestion,
   onEmptyChange,
-  onQuestionChange,
+  sendMessageRef,
 }: {
   projectSlug: string | undefined;
-  initialQuestion: string | undefined;
   onEmptyChange: (empty: boolean) => void;
-  onQuestionChange: (question: string) => void;
+  sendMessageRef?: MutableRefObject<
+    ((message: string) => Promise<void>) | undefined
+  >;
 }) => {
   const {
     data: chatEntries,
@@ -39,6 +46,7 @@ const Chat = ({
   const [isReady, setIsReady] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
   const [isFirstScrollCalled, setIsFirstScrollCalled] = useState(false);
+  const [promptMessage, setPromptMessage] = useState<string>();
 
   useEffect(() => {
     if (projectSlug == null) {
@@ -46,6 +54,7 @@ const Chat = ({
       setIsReady(false);
       setIsTouched(false);
       setIsFirstScrollCalled(false);
+      setPromptMessage(undefined);
       clearChatHistory();
     }
   }, [clearChatHistory, mutate, projectSlug]);
@@ -57,8 +66,12 @@ const Chat = ({
   const entries: Entry[] = useMemo(() => chatEntries ?? [], [chatEntries]);
 
   useEffect(() => {
-    onEmptyChange((isLoading || entries.length === 0) && !isTouched);
-  }, [onEmptyChange, isLoading, entries, isTouched]);
+    onEmptyChange(
+      (isLoading || entries.length === 0) &&
+        !isTouched &&
+        (promptMessage == null || promptMessage.length === 0)
+    );
+  }, [onEmptyChange, isLoading, entries, isTouched, promptMessage]);
 
   const sendMessage = useCallback(
     async (message: string) => {
@@ -71,7 +84,11 @@ const Chat = ({
     [createChatEntry, mutate]
   );
 
-  // const scrollableRef = useRef(document.documentElement);
+  useEffect(() => {
+    if (sendMessageRef == null) return;
+    sendMessageRef.current = sendMessage;
+  }, [sendMessageRef, sendMessage]);
+
   const scrollableRef = useRef(null);
 
   const { scrollPositionRef, scrollToBottom } = useScrollable(
@@ -95,7 +112,6 @@ const Chat = ({
         className={cn(
           "w-full h-full overflow-x-hidden overflow-y-auto px-10 pb-40",
           "max-w-4xl mx-auto",
-          // "flex flex-col justify-end",
           isReady ? "animate-in fade-in fill-mode-forwards" : "hidden"
         )}
       >
@@ -114,11 +130,7 @@ const Chat = ({
           </div>
           <div className="sticky bottom-[1.5rem]">
             <div className={cn("max-w-4xl mx-auto", "px-10")}>
-              <Prompt
-                initialValue={initialQuestion}
-                onValueChange={onQuestionChange}
-                onSubmit={sendMessage}
-              />
+              <Prompt onValueChange={setPromptMessage} onSubmit={sendMessage} />
             </div>
           </div>
         </>

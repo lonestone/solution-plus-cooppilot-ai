@@ -1,11 +1,12 @@
 import { WelcomePanel } from "@/components/organisms/WelcomePanel";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Chat from "./Chat";
 
 export function Main() {
   const [projectSlug, setProjectSlug] = useState<string>();
   const [question, setQuestion] = useState<string>();
   const [panelHidden, setPanelHidden] = useState<boolean>(false);
+  const sendMessageRef = useRef<(message: string) => Promise<void>>();
 
   const onProjectSelect = useCallback((projectSlug: string) => {
     setProjectSlug(projectSlug);
@@ -18,14 +19,11 @@ export function Main() {
 
   const onQuestionSelect = useCallback((question: string) => {
     setQuestion(question);
+    sendMessageRef?.current?.(question);
   }, []);
 
   const onEmptyChange = useCallback((empty: boolean) => {
     setPanelHidden(!empty);
-  }, []);
-
-  const onQuestionChange = useCallback((question: string) => {
-    setQuestion(question.length === 0 ? undefined : question);
   }, []);
 
   return (
@@ -40,9 +38,8 @@ export function Main() {
       />
       <Chat
         projectSlug={projectSlug}
-        initialQuestion={question}
+        sendMessageRef={sendMessageRef}
         onEmptyChange={onEmptyChange}
-        onQuestionChange={onQuestionChange}
       />
     </div>
   );
