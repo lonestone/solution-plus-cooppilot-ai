@@ -40,7 +40,7 @@ const ChatReasoningLoader = ({ entry }: ChatReasoningLoaderProps) => {
   return (
     <div className="flex flex-row items-center gap-2 mt-2">
       <Loader className="animate-spin text-primary" />
-      <span className="text-xs text-stone-50">{text}</span>
+      <span className="text-xs">{text}</span>
     </div>
   );
 };
