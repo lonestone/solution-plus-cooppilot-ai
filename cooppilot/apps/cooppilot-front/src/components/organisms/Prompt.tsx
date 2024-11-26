@@ -53,7 +53,7 @@ export default function Prompt({
       <form
         className={cn(
           "relative flex gap-4 overflow-hidden focus-within:ring-1 focus-within:ring-ring",
-          "rounded-3xl pl-2 pr-1 py-1",
+          "rounded-full pl-2 pr-1",
           "bg-[#f7f5f5]",
           "relative"
         )}
@@ -71,8 +71,7 @@ export default function Prompt({
               "h-12 max-h-16 resize-none",
               "border-0 shadow-none bg-transparent text-md text-black focus-visible:ring-0 focus-visible:ring-offset-0",
               "placeholder:text-gray-400 disabled:placeholder:text-white",
-              // NOTE: vertical alignement fix
-              "-mb-[6px]"
+              "py-3"
             )}
             minHeight={42}
             maxHeight={114}
@@ -87,7 +86,7 @@ export default function Prompt({
           <Button
             type="submit"
             size="icon"
-            className="rounded-full size-12 bg-primary"
+            className="rounded-full size-12 bg-primary my-1"
             disabled={!canSend}
           >
             <SendIcon className="size-5" />

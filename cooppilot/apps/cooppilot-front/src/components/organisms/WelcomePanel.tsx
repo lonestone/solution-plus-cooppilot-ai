@@ -56,30 +56,31 @@ export function WelcomePanel({
       <div className="relative mx-auto max-w-[932px] z-10">
         <div
           className={cn(
-            "sticky group",
-            "my-2 lg:my-4",
+            "absolute w-full",
+            "group",
+            "mt-0 lg:mt-2 2xl:mt-4",
             "transition-opacity data-[state=open]:opacity-0 data-[state=closed]:opacity-100"
           )}
           data-state={question == null && !hidden ? "open" : "closed"}
         >
           <Button
-            className="rounded-full size-16 bg-gradient-to-r from-[#C43437] to-[#ECBF30]"
+            className="rounded-b-full lg:rounded-full size-12 bg-gradient-to-r from-[#C43437] to-[#ECBF30]"
             onClick={onProjectClear}
           >
             {/* <HandIcon className="!size-8 group-data-[state=closed]:wave" /> */}
-            <HomeIcon className="!size-8" />
+            <HomeIcon className="!size-6 mb-[2px]" />
           </Button>
         </div>
         <div
           className={cn(
             "absolute w-full",
-            "my-6 lg:my-12 flex flex-col gap-10",
+            "mt-0 xl:mt-3 2xl:mt-6 flex flex-col gap-10",
             "transition-opacity data-[state=open]:opacity-100 data-[state=closed]:opacity-0",
             "data-[state=closed]:pointer-events-none"
           )}
           data-state={question == null && !hidden ? "open" : "closed"}
         >
-          <div className="text-3xl lg:text-6xl lg:leading-[125%]">
+          <div className="text-xl lg:text-3xl xl:text-6xl xl:leading-[125%]">
             <div className="font-bold inline-block bg-gradient-to-r from-[#C73C37] to-[#EDC642] text-transparent bg-clip-text">
               {t("title")}
             </div>
@@ -183,7 +184,8 @@ export function WelcomePanel({
                 "transition-opacity opacity-0 delay-0",
                 "group-data-[step='1']/step:opacity-100",
                 "group-data-[step='1']/step:delay-1000",
-                "flex gap-4 text-lg justify-center py-10"
+                "py-2 2xl:py-10",
+                "flex gap-4 text-lg justify-center"
               )}
               data-active={projectSlug != null}
             >

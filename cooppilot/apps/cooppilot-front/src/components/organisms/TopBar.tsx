@@ -12,9 +12,9 @@ const TopBar = () => {
   // }, []);
 
   return (
-    <div className="px-4 py-2 flex flex-row justify-between items-center z-10 border-white border h-20 bg-gradient-to-r from-[#efefef99] to-[#efefef33]">
+    <div className="px-4 py-2 flex flex-row justify-between items-center z-10 border-white border bg-gradient-to-r from-[#efefef99] to-[#efefef33]">
       <div className="flex flex-row items-center justify-center">
-        <img src={logo} alt="Logo" width={50} />
+        <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
       </div>
       <div />
       {/* <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
