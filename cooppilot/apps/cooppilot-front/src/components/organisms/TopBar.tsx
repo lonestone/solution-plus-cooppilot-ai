@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
   // const [drawerOpen, setDrawerOpen] = useState(false);
@@ -12,9 +13,11 @@ const TopBar = () => {
   // }, []);
 
   return (
-    <div className="px-4 py-2 flex flex-row justify-between items-center z-10 border-white border bg-gradient-to-r from-[#efefef99] to-[#efefef33]">
+    <div className="px-4 py-2 flex flex-row justify-between items-center z-10">
       <div className="flex flex-row items-center justify-center">
-        <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
+        <Link to="/" reloadDocument={false} unstable_viewTransition={true}>
+          <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
+        </Link>
       </div>
       <div />
       {/* <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>

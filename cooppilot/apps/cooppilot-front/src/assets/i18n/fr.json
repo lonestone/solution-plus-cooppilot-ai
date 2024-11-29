@@ -8,44 +8,50 @@
     }
   },
   "Welcome": {
-    "title": "Bonjour",
-    "subTitle": "De quoi avez-vous besoin aujourd'hui ?",
-    "selectAgent": "Sélectionnez un domaine métier",
+    "title": "Bonjour !",
+    "subTitle": "Comment puis-je être utile aujourd’hui ?",
+    "selectAgent": "Sélectionnez un assistant métier",
     "selectQuestion": "Sélectionnez une question",
     "orTypeYourQuestion": "ou tapez directement votre question",
     "agents": {
       "agent-tc": {
-        "description": "TC",
+        "description": "Technico-Commercial",
         "questions": [
-          "Comment générer un quizz personnalisé pour un agent ?",
-          "Comment créer un quizz personnalisé pour un agent ?",
-          "Comment créer un quizz personnalisé pour un agent ?",
-          "Quels sont les outils que je peux utiliser pour créer un quizz personnalisé ?",
-          "Comment créer un quizz personnalisé pour un agent ?"
+          "Quelles sont les principales méthodes d'évaluation de la fertilité physique des sols ?",
+          "Propose-moi un argumentaire pour un agriculteur dont la priorité est l'efficacité commerciale",
+          "Comment convaincre un agriculteur de mettre en place des pratiques agroécologiques ?",
+          "Que faire si un agriculteur hésite à investir à cause de l’inflation ?",
+          "Quels sont les impacts des digestats sur la fertilité des sols ?"
         ]
       },
       "agent-hse": {
         "description": "HSE",
         "questions": [
-          "TODO",
-          "TODO",
-          "TODO",
-          "TODO"
+          "Quel est le classement ICPE d'un silo ?",
+          "Quelles sont les précautions à prendre avant d'intervenir en silo ?",
+          "Quelles sont les recommandations pour un local de stockage de produit phyto ?",
+          "Peux-tu m'aider à rédiger ma procédure d'inertage engrais ?",
+          "Qu'est-ce que les précurseurs d'explosifs ?"
         ]
       },
       "agent-manager": {
-        "description": "Manager",
+        "description": "Management",
         "questions": [
-          "TODO",
-          "TODO",
-          "TODO"
+          "Comment structurer ma prochaine réunion d’équipe pour qu’elle soit efficace ?",
+          "Quels indicateurs dois-je suivre pour mesurer la performance de mon équipe ?",
+          "Aide-moi à préparer l’entretien annuel de mes collaborateurs",
+          "Comment gérer une situation conflictuelle entre deux collaborateurs ?",
+          "Quelles sont les meilleures pratiques pour déléguer efficacement ?"
         ]
       },
       "agent-marketing": {
         "description": "Marketing",
         "questions": [
-          "TODO",
-          "TODO"
+          "Quels canaux privilégier pour promouvoir nos offres auprès des jeunes agriculteurs ?",
+          "Rédige-moi un post LinkedIn engageant sur nos dernières innovations",
+          "Quelles sont les tendances marketing actuelles dans le secteur agricole ?",
+          "Construis-moi une stratégie marketing pour notre participation à un salon agricole",
+          "Quels contenus je dois prioriser pour attirer des visiteurs sur notre site web ?"
         ]
       }
     }
