@@ -1,24 +1,24 @@
 import { WelcomePanel } from "@/components/organisms/WelcomePanel";
 import { useCallback, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Chat from "./Chat";
 
 export function Main() {
-  const [projectSlug, setProjectSlug] = useState<string>();
-  const [question, setQuestion] = useState<string>();
+  const { agentId } = useParams<{ agentId: string }>();
+
   const [panelHidden, setPanelHidden] = useState<boolean>(false);
   const sendMessageRef = useRef<(message: string) => Promise<void>>();
 
-  const onProjectSelect = useCallback((projectSlug: string) => {
-    setProjectSlug(projectSlug);
-  }, []);
+  const navigate = useNavigate();
 
-  const onProjectClear = useCallback(() => {
-    setProjectSlug(undefined);
-    setQuestion(undefined);
-  }, []);
+  const onAgentSelect = useCallback(
+    (agentId: string) => navigate(`/agent/${agentId}`),
+    [navigate]
+  );
+
+  const onAgentClear = useCallback(() => navigate(`/`), [navigate]);
 
   const onQuestionSelect = useCallback((question: string) => {
-    setQuestion(question);
     sendMessageRef?.current?.(question);
   }, []);
 
@@ -29,15 +29,14 @@ export function Main() {
   return (
     <div className="grid grid-rows-[max-content_1fr] h-full">
       <WelcomePanel
-        projectSlug={projectSlug}
-        question={question}
+        agentId={agentId}
         hidden={panelHidden}
-        onProjectSelect={onProjectSelect}
-        onProjectClear={onProjectClear}
+        onAgentSelect={onAgentSelect}
+        onAgentClear={onAgentClear}
         onQuestionSelect={onQuestionSelect}
       />
       <Chat
-        projectSlug={projectSlug}
+        projectSlug={agentId}
         sendMessageRef={sendMessageRef}
         onEmptyChange={onEmptyChange}
       />

@@ -21,10 +21,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
         element: <DefaultLayout />,
         children: [
           {
-            index: true,
+            path: "/agent?/:agentId?",
             element: <Main />,
           },
           {
