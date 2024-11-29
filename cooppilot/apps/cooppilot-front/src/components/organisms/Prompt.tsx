@@ -53,7 +53,7 @@ export default function Prompt({
       <form
         className={cn(
           "relative flex gap-4 overflow-hidden focus-within:ring-1 focus-within:ring-ring",
-          "rounded-full pl-2 pr-1",
+          "rounded-[1.7rem] pl-2 pr-1",
           "bg-[#f7f5f5]",
           "relative"
         )}
