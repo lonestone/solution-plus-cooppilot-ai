@@ -16,7 +16,10 @@ const TopBar = () => {
     <div className="px-4 py-2 flex flex-row justify-between items-center z-10">
       <div className="flex flex-row items-center justify-center">
         <Link to="/" reloadDocument={false} unstable_viewTransition={true}>
-          <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
+          <div className="flex flex-row items-center justify-center">
+            <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
+            <span className="text-black text-2xl">hat Coop</span>
+          </div>
         </Link>
       </div>
       <div />

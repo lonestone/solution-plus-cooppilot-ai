@@ -1,29 +1,234 @@
 {
+  "Chat": {
+    "Feedback": {
+      "NEGATIVE": {
+        "desc": "Dites-nous pourquoi vous pensez que cette réponse n'est pas utile",
+        "submit": "Soumettre un commentaire négatif"
+      },
+      "POSITIVE": {
+        "desc": "Dites-nous pourquoi vous pensez que cette réponse est utile",
+        "submit": "Soumettre un commentaire positif"
+      },
+      "comment": "Commentaire",
+      "commentPlaceholder": "Entrez votre commentaire",
+      "createdSuccessfully": "Les commentaires ont été créés avec succès",
+      "sentDesc": "Merci pour votre commentaire !",
+      "title": "Partager les commentaires",
+      "updatedSuccessfully": "Les commentaires ont été mis à jour avec succès"
+    },
+    "Reasoning": {
+      "get_competitor_alternative": "Je recherche une alternative à un produit concurrent dans notre catalogue de produits",
+      "get_competitor_products": "Je recherche un produit concurrent correspondant aux données fournies.",
+      "get_order_by_reference": "Je recherche une commande avec cette référence",
+      "get_partnumber_from_serialnumber": "Je recherche la référence de ce numéro de série",
+      "order_search": "Je recherche une commande sur la base des données fournies",
+      "product_details": "Je recueille les détails du produit",
+      "product_documents": "Je recherche un document correspondant aux critères",
+      "product_maintenance": "Je recherche des informations sur la maintenance de ce produit",
+      "product_search": "Je recherche un produit sur la base des données fournies",
+      "rag_search": "Je recherche une réponse dans ma base de connaissances",
+      "slt_search": "Je recherche des informations sur les délais, les stocks et les prix de ce produit"
+    },
+    "Tools": {
+      "get_competitor_alternative": "Concurrents",
+      "get_competitor_products": "Obtenir des produits concurrents",
+      "get_order_by_reference": "Commande par référence",
+      "get_partnumber_from_serialnumber": "Numéro de pièce à partir du numéro de série",
+      "order_search": "Recherche de commande",
+      "product_details": "Détails de la variante",
+      "product_documents": "Recherche de documents",
+      "product_maintenance": "Informations sur la maintenance",
+      "product_search": "Recherche de produit",
+      "rag_search": "Recherche de documents (RAG)",
+      "slt_search": "Informations sur les stocks, les délais et les prix"
+    },
+    "answerError": "Quelque chose n'a pas fonctionné",
+    "answerLoading": "Je rassemble tous les outils à ma disposition...",
+    "clearConversation": "Effacer la conversation",
+    "clearConversationDesc": "Dans certains cas, la réinitialisation de l'historique des conversations peut améliorer la qualité des réponses.",
+    "conversationClearError": "Quelque chose s'est mal passé",
+    "conversationClearSuccess": "Historique de la conversation effacé",
+    "details": "Détails",
+    "inspireMe": "Inspire moi",
+    "sources": "Sources",
+    "tools": "Outils"
+  },
+  "ChatPromptInput": {
+    "micTooltip": "Utiliser votre microphone",
+    "typeYourMessage": "Tapez votre message ou \"/\" pour voir les suggestions",
+    "uploadTooltip": "Télécharger un fichier"
+  },
+  "Help": {
+    "ExpMode": {
+      "Examples": {
+        "1": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est le genre de question que l'utilisateur peut se poser ?"
+        },
+        "2": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "3": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "4": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        }
+      },
+      "desc": "Découvrez comment améliorer votre expérience globale",
+      "title": "Mode expérimental"
+    },
+    "Features": {
+      "Examples": {
+        "1": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est le genre de question que l'utilisateur peut se poser ?"
+        },
+        "2": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est le genre de question que l'utilisateur peut se poser ?"
+        },
+        "3": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "4": {
+          "desc": "Voici la réponse et des informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        }
+      },
+      "desc": "Découvrez ce que vous pouvez faire avec CoopIA",
+      "title": "Fonctionnalités"
+    },
+    "Privacy": {
+      "Examples": {
+        "1": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "2": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est le genre de question que l'utilisateur peut se poser ?"
+        },
+        "3": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "4": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        }
+      },
+      "desc": "Découvrez comment vos données sont protégées",
+      "title": "Confidentialité"
+    },
+    "Questions": {
+      "desc": "Découvrez le type de questions que vous pouvez poser à CoopIA.",
+      "title": "Exemples de questions"
+    },
+    "Usecases": {
+      "Examples": {
+        "1": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "2": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "3": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        },
+        "4": {
+          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser.",
+          "title": "C'est un type de question que l'utilisateur peut se poser ?"
+        }
+      },
+      "desc": "Découvrez comment CoopIA peut vous aider",
+      "title": "Cas d'utilisation"
+    },
+    "desc": "Retrouvez toutes les informations nécessaires à l'utilisation de CoopIA",
+    "title": "Aide"
+  },
+  "NewChatHeader": {
+    "Fragments": {
+      "FirstSteps": {
+        "Steps": {
+          "1": "Découvrez comment CoopIA fonctionne et comment les questions sont générées.",
+          "2": "En savoir plus sur les documents de la base de données.",
+          "3": "Posez une question à CoopIA et obtenez une réponse."
+        },
+        "title": "Premiers pas avec CoopIA"
+      },
+      "Questions": {
+        "Documents": {
+          "Examples": {
+            "1": "Faire un résumé de ce document",
+            "2": "S'agit-il de la dernière version de ce document ?"
+          },
+          "title": "A propos des documents"
+        },
+        "Orders": {
+          "Examples": {
+            "1": "Quelles sont les quantités de câbles CVI3 livrées dans le cadre de la commande passée le mois dernier par mon client Airbus Nantes ?",
+            "2": "Quelle est la date de livraison confirmée pour la commande de mon client 4513131010 ?"
+          },
+          "title": "À propos des commandes"
+        },
+        "People": {
+          "Examples": {
+            "1": "Qui est le Global Key Account Manager qui peut m'aider à établir un devis chez Forvia ?",
+            "2": "Qui a vendu des outils ATEX à une usine pétrolière et gazière au cours des 12 derniers mois et peut m'aider à établir un devis ?"
+          },
+          "title": "A propos du personnel"
+        },
+        "Stocks": {
+          "Examples": {
+            "1": "Pouvez-vous m'indiquer le dernier état des stocks de DR300 et la date prévue pour son retrait progressif ?",
+            "2": "Quels sont les articles achetés par Airbus Atlantic au cours des deux dernières années qui vont être retirés du marché dans les six prochains mois ?"
+          },
+          "title": "A propos des stocks"
+        },
+        "Tools": {
+          "Examples": {
+            "1": "Que dois-je faire lorsque j'ai un code d'erreur I205 sur mon ELB ?",
+            "2": "Combien de cycles avec l'eBlueTork puis-je obtenir avec une charge de batterie ?",
+            "3": "J'ai besoin de serrer à 0,7Nm, quel modèle d'ELB correspond à mes besoins ?",
+            "4": "Quelle est la compatibilité de cette pièce de rechange 61153968375 avec d'autres outils ?",
+            "5": "Quel est le meilleur outil de remplacement pour SH70-LR1100-S90-A4S ?"
+          },
+          "title": "A propos des outils"
+        },
+        "title": "Vous pouvez poser toutes les questions que vous voulez !"
+      }
+    },
+    "subtitle": "Demandez-moi tout ce que vous voulez !",
+    "title": "Bonjour {{name}}"
+  },
+  "News": {
+    "desc": "Dernières mises à jour de CoopIA",
+    "released": "Publié le {{date}}",
+    "title": "Quoi de neuf ?"
+  },
   "Sidebar": {
-    "talkWith": "Discuter avec CoopIA",
     "Categories": {
+      "help": "Aide",
       "more": "Plus d'informations",
-      "whatsNew": "Quoi de neuf ?",
-      "help": "Aide"
-    }
+      "whatsNew": "Quoi de neuf ?"
+    },
+    "talkWith": "Discuter avec CoopIA"
+  },
+  "Toast": {
+    "errorDesc": "Quelque chose n'a pas fonctionné",
+    "errorTitle": "Erreur",
+    "successTitle": "Succès"
   },
   "Welcome": {
-    "title": "Bonjour !",
-    "subTitle": "Comment puis-je être utile aujourd’hui ?",
-    "selectAgent": "Sélectionnez un assistant métier",
-    "selectQuestion": "Sélectionnez une question",
-    "orTypeYourQuestion": "ou tapez directement votre question",
     "agents": {
-      "agent-tc": {
-        "description": "Technico-Commercial",
-        "questions": [
-          "Quelles sont les principales méthodes d'évaluation de la fertilité physique des sols ?",
-          "Propose-moi un argumentaire pour un agriculteur dont la priorité est l'efficacité commerciale",
-          "Comment convaincre un agriculteur de mettre en place des pratiques agroécologiques ?",
-          "Que faire si un agriculteur hésite à investir à cause de l’inflation ?",
-          "Quels sont les impacts des digestats sur la fertilité des sols ?"
-        ]
-      },
       "agent-hse": {
         "description": "HSE",
         "questions": [
@@ -53,227 +258,22 @@
           "Construis-moi une stratégie marketing pour notre participation à un salon agricole",
           "Quels contenus je dois prioriser pour attirer des visiteurs sur notre site web ?"
         ]
-      }
-    }
-  },
-  "NewChatHeader": {
-    "title": "Bonjour {{name}}",
-    "subtitle": "Demandez-moi tout ce que vous voulez !",
-    "Fragments": {
-      "FirstSteps": {
-        "title": "Premiers pas avec CoopIA",
-        "Steps": {
-          "1": "Découvrez comment CoopIA fonctionne et comment les questions sont générées.",
-          "2": "En savoir plus sur les documents de la base de données.",
-          "3": "Posez une question à CoopIA et obtenez une réponse."
-        }
       },
-      "Questions": {
-        "title": "Vous pouvez poser toutes les questions que vous voulez !",
-        "Orders": {
-          "title": "À propos des commandes",
-          "Examples": {
-            "1": "Quelles sont les quantités de câbles CVI3 livrées dans le cadre de la commande passée le mois dernier par mon client Airbus Nantes ?",
-            "2": "Quelle est la date de livraison confirmée pour la commande de mon client 4513131010 ?"
-          }
-        },
-        "Tools": {
-          "title": "A propos des outils",
-          "Examples": {
-            "1": "Que dois-je faire lorsque j'ai un code d'erreur I205 sur mon ELB ?",
-            "2": "Combien de cycles avec l'eBlueTork puis-je obtenir avec une charge de batterie ?",
-            "3": "J'ai besoin de serrer à 0,7Nm, quel modèle d'ELB correspond à mes besoins ?",
-            "4": "Quelle est la compatibilité de cette pièce de rechange 61153968375 avec d'autres outils ?",
-            "5": "Quel est le meilleur outil de remplacement pour SH70-LR1100-S90-A4S ?"
-          }
-        },
-        "Stocks": {
-          "title": "A propos des stocks",
-          "Examples": {
-            "1": "Pouvez-vous m'indiquer le dernier état des stocks de DR300 et la date prévue pour son retrait progressif ?",
-            "2": "Quels sont les articles achetés par Airbus Atlantic au cours des deux dernières années qui vont être retirés du marché dans les six prochains mois ?"
-          }
-        },
-        "People": {
-          "title": "A propos du personnel",
-          "Examples": {
-            "1": "Qui est le Global Key Account Manager qui peut m'aider à établir un devis chez Forvia ?",
-            "2": "Qui a vendu des outils ATEX à une usine pétrolière et gazière au cours des 12 derniers mois et peut m'aider à établir un devis ?"
-          }
-        },
-        "Documents": {
-          "title": "A propos des documents",
-          "Examples": {
-            "1": "Faire un résumé de ce document",
-            "2": "S'agit-il de la dernière version de ce document ?"
-          }
-        }
-      }
-    }
-  },
-  "ChatPromptInput": {
-    "typeYourMessage": "Tapez votre message ou \"/\" pour voir les suggestions",
-    "uploadTooltip": "Télécharger un fichier",
-    "micTooltip": "Utiliser votre microphone"
-  },
-  "Chat": {
-    "answerError": "Quelque chose n'a pas fonctionné",
-    "answerLoading": "Je rassemble tous les outils à ma disposition...",
-    "clearConversation": "Effacer la conversation",
-    "clearConversationDesc": "Dans certains cas, la réinitialisation de l'historique des conversations peut améliorer la qualité des réponses.",
-    "inspireMe": "Inspire moi",
-    "conversationClearSuccess": "Historique de la conversation effacé",
-    "conversationClearError": "Quelque chose s'est mal passé",
-    "tools": "Outils",
-    "sources": "Sources",
-    "details": "Détails",
-    "Feedback": {
-      "title": "Partager les commentaires",
-      "POSITIVE": {
-        "desc": "Dites-nous pourquoi vous pensez que cette réponse est utile",
-        "submit": "Soumettre un commentaire positif"
-      },
-      "NEGATIVE": {
-        "desc": "Dites-nous pourquoi vous pensez que cette réponse n'est pas utile",
-        "submit": "Soumettre un commentaire négatif"
-      },
-      "commentPlaceholder": "Entrez votre commentaire",
-      "comment": "Commentaire",
-      "sentDesc": "Merci pour votre commentaire !",
-      "createdSuccessfully": "Les commentaires ont été créés avec succès",
-      "updatedSuccessfully": "Les commentaires ont été mis à jour avec succès"
-    },
-    "Reasoning": {
-      "get_order_by_reference": "Je recherche une commande avec cette référence",
-      "get_partnumber_from_serialnumber": "Je recherche la référence de ce numéro de série",
-      "order_search": "Je recherche une commande sur la base des données fournies",
-      "product_details": "Je recueille les détails du produit",
-      "product_documents": "Je recherche un document correspondant aux critères",
-      "product_maintenance": "Je recherche des informations sur la maintenance de ce produit",
-      "product_search": "Je recherche un produit sur la base des données fournies",
-      "rag_search": "Je recherche une réponse dans la base de connaissances sur la base des données fournies",
-      "slt_search": "Je recherche des informations sur les délais, les stocks et les prix de ce produit",
-      "get_competitor_alternative": "Je recherche une alternative à un produit concurrent dans notre catalogue de produits",
-      "get_competitor_products": "Je recherche un produit concurrent correspondant aux données fournies."
-    },
-    "Tools": {
-      "get_order_by_reference": "Commande par référence",
-      "get_partnumber_from_serialnumber": "Numéro de pièce à partir du numéro de série",
-      "order_search": "Recherche de commande",
-      "product_details": "Détails de la variante",
-      "product_documents": "Recherche de documents",
-      "product_maintenance": "Informations sur la maintenance",
-      "product_search": "Recherche de produit",
-      "rag_search": "Recherche de documents (RAG)",
-      "slt_search": "Informations sur les stocks, les délais et les prix",
-      "get_competitor_alternative": "Concurrents",
-      "get_competitor_products": "Obtenir des produits concurrents"
-    }
-  },
-  "Toast": {
-    "successTitle": "Succès",
-    "errorTitle": "Erreur",
-    "errorDesc": "Quelque chose n'a pas fonctionné"
-  },
-  "Help": {
-    "title": "Aide",
-    "desc": "Retrouvez toutes les informations nécessaires à l'utilisation de CoopIA",
-    "Questions": {
-      "title": "Exemples de questions",
-      "desc": "Découvrez le type de questions que vous pouvez poser à CoopIA."
-    },
-    "Usecases": {
-      "title": "Cas d'utilisation",
-      "desc": "Découvrez comment CoopIA peut vous aider",
-      "Examples": {
-        "1": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "2": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "3": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "4": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        }
+      "agent-tc": {
+        "description": "Technico-Commercial",
+        "questions": [
+          "Quelles sont les principales méthodes d'évaluation de la fertilité physique des sols ?",
+          "Propose-moi un argumentaire pour un agriculteur dont la priorité est l'efficacité commerciale",
+          "Comment convaincre un agriculteur de mettre en place des pratiques agroécologiques ?",
+          "Que faire si un agriculteur hésite à investir à cause de l’inflation ?",
+          "Quels sont les impacts des digestats sur la fertilité des sols ?"
+        ]
       }
     },
-    "Features": {
-      "title": "Fonctionnalités",
-      "desc": "Découvrez ce que vous pouvez faire avec CoopIA",
-      "Examples": {
-        "1": {
-          "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "2": {
-          "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "3": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "4": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et des informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        }
-      }
-    },
-    "Privacy": {
-      "title": "Confidentialité",
-      "desc": "Découvrez comment vos données sont protégées",
-      "Examples": {
-        "1": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser."
-        },
-        "2": {
-          "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "3": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "4": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand elle peut l'utiliser."
-        }
-      }
-    },
-    "ExpMode": {
-      "title": "Mode expérimental",
-      "desc": "Découvrez comment améliorer votre expérience globale",
-      "Examples": {
-        "1": {
-          "title": "C'est le genre de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "2": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "3": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        },
-        "4": {
-          "title": "C'est un type de question que l'utilisateur peut se poser ?",
-          "desc": "Voici la réponse et les informations révélatrices qui peuvent aider l'utilisateur à comprendre ce que CoopIA peut faire et quand il peut l'utiliser."
-        }
-      }
-    }
-  },
-  "News": {
-    "title": "Quoi de neuf ?",
-    "desc": "Dernières mises à jour de CoopIA",
-    "released": "Publié le {{date}}"
+    "orTypeYourQuestion": "ou tapez directement votre question",
+    "selectAgent": "Sélectionnez un assistant métier",
+    "selectQuestion": "Sélectionnez une question",
+    "subTitle": "Comment puis-je être utile aujourd’hui ?",
+    "title": "Bonjour !"
   }
 }

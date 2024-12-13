@@ -1,105 +1,24 @@
 {
-  "Sidebar": {
-    "talkWith": "Talk with CoopIA",
-    "Categories": {
-      "more": "More",
-      "whatsNew": "What's new ?",
-      "help": "Help"
-    }
-  },
-  "Welcome": {
-    "title": "Hi",
-    "subTitle": "What do you want to do?",
-    "selectAgent": "Select a field"
-  },
-  "NewChatHeader": {
-    "title": "Hello {{name}}",
-    "subtitle": "Ask me anything!",
-    "Fragments": {
-      "FirstSteps": {
-        "title": "First steps with CoopIA",
-        "Steps": {
-          "1": "Find out how CoopIA works and how questions are generated.",
-          "2": "Find out more about the documents in the database.",
-          "3": "Ask CoopIA a question and get a response."
-        }
-      },
-      "Questions": {
-        "title": "You can ask whatever you want!",
-        "Orders": {
-          "title": "About orders",
-          "Examples": {
-            "1": "What are the CVI3 cables delivered quantites from my customer Airbus Nantes order of last month?",
-            "2": "What is the confirmed delivery date for my customer order 4513131010?"
-          }
-        },
-        "Tools": {
-          "title": "About tools",
-          "Examples": {
-            "1": "What should I do when i have an error code I205 on my ELB?",
-            "2": "How many cycles with the eBlueTork can I get on one battery charge?",
-            "3": "I need to thighten at 0.7Nm, which ELB model fit my needs?",
-            "4": "What is the compatibility of this spare part 61153968375 with other tools?",
-            "5": "What is the best replacing tool for SH70-LR1100-S90-A4S?"
-          }
-        },
-        "Stocks": {
-          "title": "About stocks",
-          "Examples": {
-            "1": "Can you give me lastest stock status for DR300 and when is planned the phase out?",
-            "2": "Which items by customer Airbus Atlantic bought the last 2 years are going to be phase out in the next 6 months?"
-          }
-        },
-        "People": {
-          "title": "About people",
-          "Examples": {
-            "1": "Who is the Global Key Account Manager that can help me with quoting at Forvia?",
-            "2": "Who has sold ATEX tools to an Oil and Gas plant in the last 12 months and can help me for quoting?"
-          }
-        },
-        "Documents": {
-          "title": "About documents",
-          "Examples": {
-            "1": "Make a summary of this document",
-            "2": "Is it the latest version of this document?"
-          }
-        }
-      }
-    }
-  },
-  "ChatPromptInput": {
-    "typeYourMessage": "Type your message or “/” to see suggestions",
-    "uploadTooltip": "Upload a file",
-    "micTooltip": "Use your microphone"
-  },
   "Chat": {
-    "answerError": "Something went wrong",
-    "answerLoading": "I'm gathering all the tools at my disposal...",
-    "clearConversation": "Clear conversation",
-    "clearConversationDesc": "In a few cases, reset conversation history may improve response quality",
-    "inspireMe": "Inspire me",
-    "conversationClearSuccess": "Conversation history cleared",
-    "conversationClearError": "Something went wrong",
-    "tools": "Tools",
-    "sources": "Sources",
-    "details": "Details",
     "Feedback": {
-      "title": "Share feedback",
-      "POSITIVE": {
-        "desc": "Tell us why you think this answer was helpful",
-        "submit": "Submit positive feedback"
-      },
       "NEGATIVE": {
         "desc": "Tell us why you think this answer was not helpful",
         "submit": "Submit negative feedback"
       },
-      "commentPlaceholder": "Enter your comment",
+      "POSITIVE": {
+        "desc": "Tell us why you think this answer was helpful",
+        "submit": "Submit positive feedback"
+      },
       "comment": "Comment",
-      "sentDesc": "Thank you for your feedback!",
+      "commentPlaceholder": "Enter your comment",
       "createdSuccessfully": "Feedback created successfully",
+      "sentDesc": "Thank you for your feedback!",
+      "title": "Share feedback",
       "updatedSuccessfully": "Feedback updated successfully"
     },
     "Reasoning": {
+      "get_competitor_alternative": "I’m looking for a competitor product alternative within our product catalog",
+      "get_competitor_products": "I’m looking for a competitor product matching the provided data",
       "get_order_by_reference": "I’m searching for an order with this reference",
       "get_partnumber_from_serialnumber": "I’m retrieving the part number of this serial number",
       "order_search": "I’m searching for an order based on the provided data",
@@ -107,12 +26,12 @@
       "product_documents": "I’m looking for a document matching the criteria",
       "product_maintenance": "I’m looking for maintenance information about this product",
       "product_search": "Im looking for a product based on the provided data",
-      "rag_search": "I’m looking for an answer within the knowledge base based on the provided data",
-      "slt_search": "I’m gathering information about leadtime, stock and price information for this product",
-      "get_competitor_alternative": "I’m looking for a competitor product alternative within our product catalog",
-      "get_competitor_products": "I’m looking for a competitor product matching the provided data"
+      "rag_search": "I’m looking for an answer within the knowledge base",
+      "slt_search": "I’m gathering information about leadtime, stock and price information for this product"
     },
     "Tools": {
+      "get_competitor_alternative": "Competitor Alternative",
+      "get_competitor_products": "Get Competitor Products",
       "get_order_by_reference": "Order by Reference",
       "get_partnumber_from_serialnumber": "Partnumber From Serialnumber",
       "order_search": "Order Search",
@@ -121,115 +40,196 @@
       "product_maintenance": "Maintenance Information",
       "product_search": "Product Search",
       "rag_search": "Document Search (RAG)",
-      "slt_search": "Stock, Lead Time and Price Information",
-      "get_competitor_alternative": "Competitor Alternative",
-      "get_competitor_products": "Get Competitor Products"
-    }
+      "slt_search": "Stock, Lead Time and Price Information"
+    },
+    "answerError": "Something went wrong",
+    "answerLoading": "I'm gathering all the tools at my disposal...",
+    "clearConversation": "Clear conversation",
+    "clearConversationDesc": "In a few cases, reset conversation history may improve response quality",
+    "conversationClearError": "Something went wrong",
+    "conversationClearSuccess": "Conversation history cleared",
+    "details": "Details",
+    "inspireMe": "Inspire me",
+    "sources": "Sources",
+    "tools": "Tools"
   },
-  "Toast": {
-    "successTitle": "Success",
-    "errorTitle": "Error",
-    "errorDesc": "Something went wrong"
+  "ChatPromptInput": {
+    "micTooltip": "Use your microphone",
+    "typeYourMessage": "Type your message or “/” to see suggestions",
+    "uploadTooltip": "Upload a file"
   },
   "Help": {
-    "title": "Help",
-    "desc": "Find all the information you need to use CoopIA",
-    "Questions": {
-      "title": "Question exemples",
-      "desc": "Discover what kind of questions you can ask CoopIA"
-    },
-    "Usecases": {
-      "title": "Usecases",
-      "desc": "Discover how CoopIA can help you",
+    "ExpMode": {
       "Examples": {
         "1": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "2": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "3": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "4": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         }
-      }
+      },
+      "desc": "Discover how to improve your overall experience",
+      "title": "Experimental mode"
     },
     "Features": {
-      "title": "Features",
-      "desc": "Discover what you can do with CoopIA",
       "Examples": {
         "1": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "2": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "3": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "4": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         }
-      }
+      },
+      "desc": "Discover what you can do with CoopIA",
+      "title": "Features"
     },
     "Privacy": {
-      "title": "Privacy",
-      "desc": "Learn how your data is protected",
       "Examples": {
         "1": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "2": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "3": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         },
         "4": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
         }
+      },
+      "desc": "Learn how your data is protected",
+      "title": "Privacy"
+    },
+    "Questions": {
+      "desc": "Discover what kind of questions you can ask CoopIA",
+      "title": "Question exemples"
+    },
+    "Usecases": {
+      "Examples": {
+        "1": {
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
+        },
+        "2": {
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
+        },
+        "3": {
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
+        },
+        "4": {
+          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it.",
+          "title": "This is a kind of question user could ask himself?"
+        }
+      },
+      "desc": "Discover how CoopIA can help you",
+      "title": "Usecases"
+    },
+    "desc": "Find all the information you need to use CoopIA",
+    "title": "Help"
+  },
+  "NewChatHeader": {
+    "Fragments": {
+      "FirstSteps": {
+        "Steps": {
+          "1": "Find out how CoopIA works and how questions are generated.",
+          "2": "Find out more about the documents in the database.",
+          "3": "Ask CoopIA a question and get a response."
+        },
+        "title": "First steps with CoopIA"
+      },
+      "Questions": {
+        "Documents": {
+          "Examples": {
+            "1": "Make a summary of this document",
+            "2": "Is it the latest version of this document?"
+          },
+          "title": "About documents"
+        },
+        "Orders": {
+          "Examples": {
+            "1": "What are the CVI3 cables delivered quantites from my customer Airbus Nantes order of last month?",
+            "2": "What is the confirmed delivery date for my customer order 4513131010?"
+          },
+          "title": "About orders"
+        },
+        "People": {
+          "Examples": {
+            "1": "Who is the Global Key Account Manager that can help me with quoting at Forvia?",
+            "2": "Who has sold ATEX tools to an Oil and Gas plant in the last 12 months and can help me for quoting?"
+          },
+          "title": "About people"
+        },
+        "Stocks": {
+          "Examples": {
+            "1": "Can you give me lastest stock status for DR300 and when is planned the phase out?",
+            "2": "Which items by customer Airbus Atlantic bought the last 2 years are going to be phase out in the next 6 months?"
+          },
+          "title": "About stocks"
+        },
+        "Tools": {
+          "Examples": {
+            "1": "What should I do when i have an error code I205 on my ELB?",
+            "2": "How many cycles with the eBlueTork can I get on one battery charge?",
+            "3": "I need to thighten at 0.7Nm, which ELB model fit my needs?",
+            "4": "What is the compatibility of this spare part 61153968375 with other tools?",
+            "5": "What is the best replacing tool for SH70-LR1100-S90-A4S?"
+          },
+          "title": "About tools"
+        },
+        "title": "You can ask whatever you want!"
       }
     },
-    "ExpMode": {
-      "title": "Experimental mode",
-      "desc": "Discover how to improve your overall experience",
-      "Examples": {
-        "1": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
-        },
-        "2": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
-        },
-        "3": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
-        },
-        "4": {
-          "title": "This is a kind of question user could ask himself?",
-          "desc": "Here is the answer and revelant information that can help user to understand what CoopIA can do and when it can use it."
-        }
-      }
-    }
+    "subtitle": "Ask me anything!",
+    "title": "Hello {{name}}"
   },
   "News": {
-    "title": "What's new?",
     "desc": "Latest CoopIA updates",
-    "released": "Released on {{date}}"
+    "released": "Released on {{date}}",
+    "title": "What's new?"
+  },
+  "Sidebar": {
+    "Categories": {
+      "help": "Help",
+      "more": "More",
+      "whatsNew": "What's new ?"
+    },
+    "talkWith": "Talk with CoopIA"
+  },
+  "Toast": {
+    "errorDesc": "Something went wrong",
+    "errorTitle": "Error",
+    "successTitle": "Success"
+  },
+  "Welcome": {
+    "selectAgent": "Select a field",
+    "subTitle": "What do you want to do?",
+    "title": "Hi"
   }
 }

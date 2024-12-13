@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Aeonik";
+  font-family: 'Aeonik';
   font-weight: 100;
-  src: url("../public/fonts/Aeonik-Regular.ttf");
+  src: url('../public/fonts/Aeonik-Regular.ttf');
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -30,7 +30,7 @@
 /* Track */
 ::-webkit-scrollbar-track {
   background: transparent;
-  margin-block: .25rem;
+  margin-block: 0.25rem;
   margin-left: 15px;
 }
 
@@ -210,7 +210,7 @@
   pre code {
     display: block;
     text-wrap: wrap;
-    padding: 0.50rem 1rem !important;
+    padding: 0.5rem 1rem !important;
     border-radius: 0.5rem;
     background: hsl(0, 0%, 80%);
 
@@ -225,7 +225,7 @@
     gap: 1rem;
   }
 
-  ul>li:has(> img) {
+  ul > li:has(> img) {
     flex: 1;
     max-width: 50%;
   }

@@ -1,9 +1,4 @@
 import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import { useDebounceValue } from "@/hooks/useDebounceValue";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, HomeIcon, PointerIcon } from "lucide-react";
@@ -101,13 +96,13 @@ export function WelcomePanel({
           >
             <div className="text-xl xl:text-2xl relative">
               <div className="opacity-0 pointer-events-none gap-4">
-                <Button
+                {/* <Button
                   variant="default"
                   size="icon"
                   className="rounded-full mr-4"
                 >
                   <ChevronLeftIcon />
-                </Button>
+                </Button> */}
                 {t("selectAgent")}
               </div>
               <div
@@ -118,13 +113,13 @@ export function WelcomePanel({
                 data-active={agentId == null}
                 data-size="large"
               >
-                <Button
+                {/* <Button
                   variant="default"
                   size="icon"
                   className="rounded-full mr-4 opacity-0 pointer-events-none"
                 >
                   <ChevronLeftIcon />
-                </Button>
+                </Button> */}
                 {t("selectAgent")}
               </div>
               <div
@@ -146,46 +141,36 @@ export function WelcomePanel({
               </div>
             </div>
 
-            <div className="relative overflow-hidden h-[176px]">
+            <div className="relative overflow-hidden h-[200px]">
               <div
                 className={cn(
-                  "h-full",
                   "relative top-0",
                   "transition-[top] ease-in-out delay-150 duration-300",
                   "group-data-[step='1']/step:-top-[100%]",
                   "flex flex-col [&>div]:flex-[0_0_100%]"
                 )}
               >
-                <Carousel orientation="horizontal">
-                  <CarouselContent className="-ml-2">
-                    {agents.map((agentInfo) => (
-                      <CarouselItem
-                        key={agentInfo.agentId}
-                        className="pl-2 basis-1/5"
-                      >
-                        <WelcomeButton
-                          label={agentInfo.description}
-                          onClick={() => onAgentSelect(agentInfo.agentId)}
-                          className="text-lg font-semibold"
-                        />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
+                <div className="flex flex-row gap-4 mb-6">
+                  {agents.map((agentInfo) => (
+                    <WelcomeButton
+                      key={agentInfo.agentId}
+                      label={agentInfo.description}
+                      onClick={() => onAgentSelect(agentInfo.agentId)}
+                      className="text-2xl font-semibold"
+                    />
+                  ))}
+                </div>
 
-                <Carousel orientation="horizontal">
-                  <CarouselContent className="-ml-2">
-                    {debouncedQuestions &&
-                      debouncedQuestions.map((question, index) => (
-                        <CarouselItem key={index} className="pl-2 basis-1/5">
-                          <WelcomeButton
-                            label={question}
-                            onClick={() => onQuestionSelect(question)}
-                          />
-                        </CarouselItem>
-                      ))}
-                  </CarouselContent>
-                </Carousel>
+                <div className="grid grid-cols-5 gap-4">
+                  {debouncedQuestions &&
+                    debouncedQuestions?.map((question, index) => (
+                      <WelcomeButton
+                        key={index}
+                        label={question}
+                        onClick={() => onQuestionSelect(question)}
+                      />
+                    ))}
+                </div>
               </div>
             </div>
 
@@ -222,10 +207,12 @@ export function WelcomeButton({
     <Button
       variant="secondary"
       className={cn(
-        "size-44 rounded-xl p-8",
-        "bg-gradient-to-br from-[#C73C37] to-[#C73C37]",
+        "w-full h-44 rounded-xl p-4",
+        "bg-gradient-to-br from-[#C73C37] to-[#e27550]",
         "hover:bg-gradient-to-br hover:from-[#C73C37] hover:to-[#EDC642]",
-        "font-normal text-sm text-center whitespace-normal text-white",
+        "font-base text-base text-center whitespace-normal text-white",
+        "border-[1px] border-[#adadad]",
+        "shadow-md",
         className
       )}
       onClick={onClick}

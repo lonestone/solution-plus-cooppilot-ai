@@ -1,7 +1,6 @@
 import logo from "@/assets/logo.png";
 import ChatEntryFeedback from "@/components/molecules/ChatEntryFeedback";
 import ChatReasoningLoader from "@/components/molecules/ChatReasoningLoader";
-import ChatAnswerDetails from "@/components/organisms/ChatAnswerDetails";
 import { useChatEntryPolling } from "@/hooks/useChatEntry";
 import { ChatEntry } from "@common/types/back/chat";
 import { useEffect, useMemo, useState } from "react";
@@ -79,9 +78,9 @@ const ChatAnswer = ({
           {Comp}
         </div>
       </div>
-      {chatEntry?.queryStatus === "DONE" && isActive && (
+      {/* {chatEntry?.queryStatus === "DONE" && isActive && (
         <ChatAnswerDetails chatEntry={chatEntry} />
-      )}
+      )} */}
       {chatEntry?.queryStatus === "DONE" && isActive && (
         <ChatEntryFeedback
           projectSlug={projectId}
