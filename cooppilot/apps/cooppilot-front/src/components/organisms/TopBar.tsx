@@ -1,5 +1,5 @@
-import logo from '@/assets/logo.png'
-import { Link } from 'react-router-dom'
+import logo from "@/assets/logo.png";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
   // const [drawerOpen, setDrawerOpen] = useState(false);
@@ -54,7 +54,7 @@ const TopBar = () => {
         </DrawerContent>
       </Drawer> */}
     </div>
-  )
-}
+  );
+};
 
-export default TopBar
+export default TopBar;
