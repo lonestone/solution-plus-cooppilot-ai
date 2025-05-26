@@ -30,6 +30,9 @@ RUN cd cooppilot/apps/cooppilot-back && pnpm run build
 FROM node:20-alpine
 
 ENV NODE_ENV production
+RUN apk upgrade --update-cache --available && \
+    apk add openssl && \
+    rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
