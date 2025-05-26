@@ -66,7 +66,7 @@ export class MetricsService {
       stream,
       startDate,
       endDate,
-      authHeaders: getAuthFromUser(user),
+      authHeaders: getAuthFromUser(user, this.orgId),
     });
 
     return stream;
