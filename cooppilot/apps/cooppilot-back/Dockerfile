@@ -2,7 +2,8 @@ FROM node:20-alpine as builder
 
 ENV NODE_ENV build
 
-RUN corepack enable pnpm
+RUN npm install -g corepack@latest
+RUN corepack prepare pnpm@10.4.1 --activate
 
 WORKDIR /app
 
@@ -21,7 +22,7 @@ RUN cd cooppilot/apps/cooppilot-back && pnpm install -r --prefer-offline
 COPY base/apps/common ./base/apps/common/
 # COPY cooppilot/apps/common ./cooppilot/apps/common/
 COPY cooppilot/apps/cooppilot-back ./cooppilot/apps/cooppilot-back/
-RUN cd cooppilot/apps/cooppilot-back && pnpm dlx prisma@latest generate
+RUN cd cooppilot/apps/cooppilot-back && pnpm prisma generate
 RUN cd cooppilot/apps/cooppilot-back && pnpm run build
 
 # ---
