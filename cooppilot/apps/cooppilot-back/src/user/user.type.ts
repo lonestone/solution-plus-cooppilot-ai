@@ -10,11 +10,10 @@ export const userSchema = z.object({
 
 export type User = z.infer<typeof userSchema>;
 
-export function getAuthFromUser(user: User): HeadersInit {
+export function getAuthFromUser(user: User, orgSlug: string): HeadersInit {
   return {
-    'x-auth-method': 'api-key',
     // TODO replace with env var
-    'x-auth-api-key': 'Wd01fzebHN7ZKNjdUw8FyRjm1KvrDZBa',
+    'x-api-key': 'Wd01fzebHN7ZKNjdUw8FyRjm1KvrDZBa',
     // Will act on behalf the following user
     'x-user-id': user.id,
     'x-user-email': user.email,
@@ -24,6 +23,7 @@ export function getAuthFromUser(user: User): HeadersInit {
       country: user.country,
       company: user.company,
     } satisfies UserMetadata),
+    'x-user-org-slug': orgSlug,
   };
 }
 

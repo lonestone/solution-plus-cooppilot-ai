@@ -62,7 +62,7 @@ export class AiBackEndService {
     return chatEntriesFetcher({
       orgId: this.orgId,
       projId: projectId,
-      authHeaders: getAuthFromUser(user),
+      authHeaders: getAuthFromUser(user, this.orgId),
     });
   }
 
@@ -78,7 +78,7 @@ export class AiBackEndService {
       orgId: this.orgId,
       projId: projectId,
       chatEntryId: entryId,
-      authHeaders: getAuthFromUser(user),
+      authHeaders: getAuthFromUser(user, this.orgId),
     });
   }
 
@@ -97,7 +97,7 @@ export class AiBackEndService {
       projId: projectId,
       history_starting_at: latestHistoryCleanup?.lastCleanup,
       message,
-      authHeaders: getAuthFromUser(user),
+      authHeaders: getAuthFromUser(user, this.orgId),
     });
 
     return res;
@@ -114,7 +114,7 @@ export class AiBackEndService {
       projId: projectId,
       chatEntryId,
       feedback,
-      authHeaders: getAuthFromUser(user),
+      authHeaders: getAuthFromUser(user, this.orgId),
     });
 
     return res;
