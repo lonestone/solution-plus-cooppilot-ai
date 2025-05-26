@@ -10,6 +10,7 @@ db_user             = ""
 db_pwd         	    = ""
 
 openai_api_key = ""
+encryption_secret_key = ""
 harvest_access_token = ""
 forecast_account_id = ""
 forecast_api_url = ""

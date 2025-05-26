@@ -61,6 +61,11 @@ variable "openai_api_key" {
   sensitive = true
 }
 
+variable "encryption_secret_key" {
+  type      = string
+  sensitive = true
+}
+
 variable "harvest_access_token" {
   type      = string
   sensitive = true

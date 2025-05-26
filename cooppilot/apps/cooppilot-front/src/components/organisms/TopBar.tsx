@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo_full.png";
 import { Link } from "react-router-dom";
 
 const TopBar = () => {
@@ -16,7 +16,7 @@ const TopBar = () => {
     <div className="px-4 py-2 flex flex-row justify-between items-center z-10">
       <div className="flex flex-row items-center justify-center">
         <Link to="/" reloadDocument={false} unstable_viewTransition={true}>
-          <img src={logo} alt="Logo" width={35} className="xl:w-[35px]" />
+          <img src={logo} alt="Logo" width={120} className="xl:w-[120px]" />
         </Link>
       </div>
       <div />
