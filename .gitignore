@@ -10,3 +10,7 @@ terraform.tfstate.*
 terraform.tfvars
 .deploy.md
 
+#PG Dump
+pg_dump/coopilot
+pg_dump/ragdb
+pg_dump/*.zip
